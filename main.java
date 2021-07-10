@@ -1,18 +1,30 @@
-import import org.json.simple.JSONObject;
-class SudokuSovler {
-    private size;
-    private cellArray;
+import java.io.*;
+
+class SudokuSolver {
+    private static int size;
+    private static char[][] cellArray;
+
    public static void main(String[] args) {
+       ImportFromJson();
+       System.out.println("Size: ");
+       System.out.println(size);
+       System.out.println("Array: ");
+       for(int i = 0; i < size; i++) {
+           for(int j = 0; j < size; j++) {
+               System.out.print(cellArray[i][j]);
+           }
+           System.out.print("\n");
+       }
 
    }
-   public static SendToJson() {
+   public static void SendToJson() {
 
    }
    /**
    * A function to grab information from the json file. Defaults to input.json as filename.
    */
-   public static ImportFromJson() {
-       public static ImportFromJson("input.json");
+   public static void ImportFromJson() {
+       ImportFromJson("input.json");
    }
    /**
    * A function to grab information from the json file.
@@ -21,7 +33,7 @@ class SudokuSovler {
    * A "0" in the cell will be interpreted as a blank value.
    * Values shall be stored as "1" to "9", and then "A" to "Z". More then 36 values will not be supported.
    */
-   public static ImportFromJson(String fileName) {
+   public static void ImportFromJson(String fileName) {
 
    }
 }
