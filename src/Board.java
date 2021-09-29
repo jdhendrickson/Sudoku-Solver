@@ -1,8 +1,8 @@
+import java.io.*;
 
-
-Class Board {
+class Board {
   //The base size of the board. Traditional sudoku boards will have a size of 9
-  private static final int size;
+  private static int size;
   //The array the board is being held in
   private static char[][] cellArray;
 
@@ -10,11 +10,11 @@ Class Board {
   * Defaults to a basic blank game board that is 9x9
   */
   public Board() {
-    size = 9;
+    this.size = 9;
     cellArray = new char[9][9];
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-        cellArray[i][j] = 0;
+        cellArray[i][j] = 48;
       }
     }
   }

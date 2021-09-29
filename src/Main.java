@@ -1,6 +1,4 @@
-import java.io.*;
-
-class SudokuSolver {
+class Main {
     private static int size;
     private static char[][] cellArray;
 
