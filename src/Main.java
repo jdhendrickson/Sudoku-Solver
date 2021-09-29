@@ -5,5 +5,10 @@ class Main {
    public static void main(String[] args) {
        Board board = new Board();
        board.printDetails();
+       try {
+           board.importFromJson();
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
    }
 }
