@@ -62,9 +62,11 @@ class Board {
   public void importFromJson(String fileName) {
     Path filePath = Path.of(fileName);
     try {
+      //Read in the file
       String file = Files.readString(filePath);//Get the file as a massive string
       file = file.toLowerCase();//Ensure there are no upper case letters to simplify comparisons
       file = file.replaceAll("\\s","");//Remove excess white space
+      ///Find the size of the array
       int sizeLoc = file.indexOf("\"size\"");//The location of "Size"
       if(sizeLoc == -1) {//If no size was found
         //Exit
@@ -76,7 +78,7 @@ class Board {
         //Get the size from the string
         size = Integer.parseInt(sizeString);
       }
-
+      ///Parse the contents of the array
 
     } catch (IOException ex) {
 
