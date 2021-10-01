@@ -67,7 +67,7 @@ class Board {
       file = file.toLowerCase();//Ensure there are no upper case letters to simplify comparisons
       file = file.replaceAll("\\s","");//Remove excess white space
       ///Find the size of the array
-      int sizeLoc = file.indexOf("\"size\"");//The location of "Size"
+      int sizeLoc = file.indexOf("\"size\"");//The location of "size"
       if(sizeLoc == -1) {//If no size was found
         //Exit
         return;
@@ -79,6 +79,17 @@ class Board {
         size = Integer.parseInt(sizeString);
       }
       ///Parse the contents of the array
+      int arrayLoc = file.indexOf("\"cellarray\"");//The location of "cellArray"
+      if(arrayLoc == -1) {//If no array was found
+        //Exit
+        System.out.println("No Array Found");
+        return;
+      } else {
+        String nextRowContents;
+        //Retrieve the next row
+        nextRowContents = file.substring(arrayLoc,arrayLoc+5);
+        System.out.println(nextRowContents);
+      }
 
     } catch (IOException ex) {
 
