@@ -70,6 +70,7 @@ class Board {
       int sizeLoc = file.indexOf("\"size\"");//The location of "size"
       if(sizeLoc == -1) {//If no size was found
         //Exit
+        System.out.println("No Size Found in json input");
         return;
       } else {
         //Size was found
@@ -79,16 +80,25 @@ class Board {
         size = Integer.parseInt(sizeString);
       }
       ///Parse the contents of the array
-      int arrayLoc = file.indexOf("\"cellarray\"");//The location of "cellArray"
-      if(arrayLoc == -1) {//If no array was found
+      int arrayStart = file.indexOf("\"cellarray\"");//The location of "cellArray"
+      int arrayEnd = file.indexOf("]]",arrayStart);//The end of the cell array
+      if(arrayStart == -1) {//If no array was found
         //Exit
-        System.out.println("No Array Found");
+        System.out.println("No Array Found in json input");
         return;
       } else {
         String nextRowContents;
-        //Retrieve the next row
-        nextRowContents = file.substring(arrayLoc,arrayLoc+5);
-        System.out.println(nextRowContents);
+        int nextRowStart = arrayStart;
+        int nextRowEnd;
+        while() {
+          //Retrieve the start of the next row
+          nextRowStart = file.indexOf("[", nextRowStart) + 1;
+          //Retrieve the next row end point
+          nextRowEnd = file.indexOf("]", nextRowStart);
+          //Retrieve the next row contents
+          nextRowContents = file.substring(nextRowStart, nextRowEnd);
+          System.out.println(nextRowContents);
+        }
       }
 
     } catch (IOException ex) {
