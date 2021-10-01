@@ -13,7 +13,7 @@ class Board {
   */
   public Board() {
     this.size = 3;
-    cellArray = new char[9][9];
+    cellArray = new char[size][size];
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
         cellArray[i][j] = 48;
@@ -48,7 +48,6 @@ class Board {
   public void sendToJson() {
     sendToJson("Default");
   }
-
   /**
    * Saves the current board state as a json file.
    * Note that this saves as a .json file, not as a text file in json format.
@@ -130,6 +129,8 @@ class Board {
         String sizeString = file.substring(file.indexOf(":", sizeLoc)+1,file.indexOf(",", sizeLoc));
         //Get the size from the string
         size = Integer.parseInt(sizeString);
+        //Redefine the cell array with the proper size
+        cellArray = new char[size][size];
       }
       ///Parse the contents of the array
       int arrayStart = file.indexOf("\"cellarray\"");//The location of "cellArray"
@@ -160,6 +161,5 @@ class Board {
     } catch (IOException ex) {
 
     }
-
   }
 }
