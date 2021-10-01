@@ -89,8 +89,9 @@ class Board {
       } else {
         String nextRowContents;
         int nextRowStart = file.indexOf("[", arrayStart) + 1;
-        int nextRowEnd;
-        //while(nextRowEnd < arrayEnd - 1) {
+        int nextRowEnd = nextRowStart;
+        int i = 0;
+        while(nextRowEnd < arrayEnd - 1) {
           //Retrieve the start of the next row
           nextRowStart = file.indexOf("[", nextRowStart) + 1;
           //Retrieve the next row end point
@@ -100,9 +101,10 @@ class Board {
           //Split the row into it's contents
           System.out.println(nextRowContents);
           for(int j = 0; j < size; j++) {
-            cellArray[0][j] = file.substring(nextRowStart + 1 + 4*j, nextRowStart + 2 + 4*j).charAt(0);
+            cellArray[i][j] = file.substring(nextRowStart + 1 + 4*j, nextRowStart + 2 + 4*j).charAt(0);
           }
-        //}
+          i++;
+        }
       }
 
     } catch (IOException ex) {
