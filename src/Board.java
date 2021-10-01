@@ -89,8 +89,8 @@ class Board {
       } else {
         String nextRowContents;
         int nextRowStart = arrayStart;
-        int nextRowEnd;
-        while() {
+        int nextRowEnd = nextRowStart;
+        while(nextRowEnd < arrayEnd - 1) {
           //Retrieve the start of the next row
           nextRowStart = file.indexOf("[", nextRowStart) + 1;
           //Retrieve the next row end point
