@@ -99,7 +99,6 @@ class Board {
           //Retrieve the next row contents
           nextRowContents = file.substring(nextRowStart, nextRowEnd);
           //Split the row into it's contents
-          System.out.println(nextRowContents);
           for(int j = 0; j < size; j++) {
             cellArray[i][j] = file.substring(nextRowStart + 1 + 4*j, nextRowStart + 2 + 4*j).charAt(0);
           }
