@@ -7,7 +7,7 @@ class Main {
        board.printDetails();
        try {
            board.importFromJson();
-           //board.printDetails();
+           board.printDetails();
        } catch (Exception e) {
            e.printStackTrace();
        }
