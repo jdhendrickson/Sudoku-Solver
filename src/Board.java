@@ -1,7 +1,6 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
 
 class Board {
   //The base size of the board. Traditional sudoku boards will have a size of 9
@@ -43,7 +42,19 @@ class Board {
       System.out.print("\n");
     }
   }
+  /**
+   * Saves the current board state as a json file. Defaults to "Default.json"
+   */
   public void sendToJson() {
+    sendToJson("Default");
+  }
+
+  /**
+   * Saves the current board state as a json file.
+   * Note that this saves as a .json file, not as a text file in json format.
+   * @param fileName The name of the file. Do not include the file extension.
+   */
+  public void sendToJson(String fileName) {
     //Add the size
     String out = "{\n\t\"size\":";
     out += size;
@@ -66,7 +77,26 @@ class Board {
     //Remove extra comma at the end
     out = out.substring(0,out.length() - 1);
     out += "\n\t]\n}";
-    System.out.println(out);
+    //Write the json to the file
+    try {
+      //Ensure the file is created
+      File output = new File(fileName + ".json");
+      if (output.createNewFile()) {
+        System.out.println("File created: " + output.getName());
+      } else {
+        System.out.println(output.getName() +" already exists.");
+      }
+      //Create a filewriter
+      FileWriter myWriter = new FileWriter(output.getName());
+      //Write the json
+      myWriter.write(out);
+      //Close the file
+      myWriter.close();
+      System.out.println("Json file written to.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
   }
   /**
   * A function to grab information from the json file. Defaults to input.json as filename.
