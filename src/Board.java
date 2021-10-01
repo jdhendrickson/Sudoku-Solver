@@ -44,7 +44,29 @@ class Board {
     }
   }
   public void sendToJson() {
-
+    //Add the size
+    String out = "{\n\t\"size\":";
+    out += size;
+    //Add the cell array label
+    out += ",\n\t\"cellArray\":[";
+    //Add the cell array
+    for(int i = 0; i < size; i++) {
+      out += "\n\t\t[";
+      //Add each cell
+      for(int j = 0; j < size; j++) {
+        out +="\"";
+        //Add the contents of the cell
+        out += cellArray[i][j];
+        out +="\",";
+      }
+      //Remove extra comma at the end
+      out = out.substring(0,out.length() - 1);
+      out+= "],";
+    }
+    //Remove extra comma at the end
+    out = out.substring(0,out.length() - 1);
+    out += "\n\t]\n}";
+    System.out.println(out);
   }
   /**
   * A function to grab information from the json file. Defaults to input.json as filename.
@@ -57,7 +79,7 @@ class Board {
   * Data in the json file will be stored as a 'size' value that tells you how big the puzzle is.
   * There will also be a 2-d array holding the starting value stored in each cell.
   * A "0" in the cell will be interpreted as a blank value.
-  * Values shall be stored as "1" to "9", and then "A" to "Z". More then 36 values will not be supported.
+  * Values shall be stored as "1" to "9", and then "A" to "Z". More than 36 values will not be supported.
   */
   public void importFromJson(String fileName) {
     Path filePath = Path.of(fileName);
@@ -100,12 +122,11 @@ class Board {
           nextRowContents = file.substring(nextRowStart, nextRowEnd);
           //Split the row into it's contents
           for(int j = 0; j < size; j++) {
-            cellArray[i][j] = file.substring(nextRowStart + 1 + 4*j, nextRowStart + 2 + 4*j).charAt(0);
+            cellArray[i][j] = file.substring(nextRowStart + 1 + 4 * j, nextRowStart + 2 + 4 * j).charAt(0);
           }
           i++;
         }
       }
-
     } catch (IOException ex) {
 
     }
