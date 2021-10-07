@@ -2,9 +2,14 @@ import java.util.ArrayList;
 
 public class Cell {
     private Character content;//Use Character class for consistency with the arraylist
+    private boolean isStarter;
     private ArrayList<Character> notes;
-    public Cell() {
+    public Cell(boolean starter) {
+        isStarter = starter;
         notes = new ArrayList<Character>();
+    }
+    public boolean getIsStarter() {
+        return isStarter;
     }
     public char getContent() {
         return content;
