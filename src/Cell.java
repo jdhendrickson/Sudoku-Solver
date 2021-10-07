@@ -28,5 +28,6 @@ public class Cell {
         for (char i : notes) {
             System.out.print(i);
         }
+        System.out.println();
     }
 }
