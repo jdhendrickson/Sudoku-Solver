@@ -3,7 +3,9 @@ import java.util.ArrayList;
 public class Cell {
     private Character content;//Use Character class for consistency with the arraylist
     private ArrayList<Character> notes;
-
+    public Cell() {
+        notes = new ArrayList<Character>();
+    }
     public char getContent() {
         return content;
     }
@@ -24,7 +26,7 @@ public class Cell {
      */
     public void printNotes() {
         for (char i : notes) {
-            System.out.println(i);
+            System.out.print(i);
         }
     }
 }
