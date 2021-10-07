@@ -36,4 +36,10 @@ public class Cell {
         }
         System.out.println();
     }
+    /**
+     * Prints the contents of the cell
+     */
+    public void printContent() {
+        System.out.print(content);
+    }
 }
