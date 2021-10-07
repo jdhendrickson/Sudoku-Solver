@@ -34,7 +34,7 @@ class Board {
    * @return A reference to the cell at that point
    */
   public Cell getCell(int x, int y) {
-    return cellArray[x][y];
+    return cellArray[y][x];
   }
   /**
    * Set a particular cell
@@ -43,7 +43,7 @@ class Board {
    * @param c The value to set the cell to
    */
   public void setCell(int x, int y, char c) {
-    cellArray[x][y].setContent(c);
+    cellArray[y][x].setContent(c);
   }
   /**
    * Adds a note to a particular cell
@@ -52,7 +52,7 @@ class Board {
    * @param c The value to add as a note
    */
   public void addNote(int x, int y, char c) {
-    cellArray[x][y].addNote(c);
+    cellArray[y][x].addNote(c);
   }
   /**
    * Create a new game board from a specified json file
