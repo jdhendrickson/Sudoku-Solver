@@ -1,5 +1,5 @@
 public class Solver {
-    Board board;
+    private Board board;
     /**
      * Defaults to input.json as the input file
      */
@@ -16,5 +16,12 @@ public class Solver {
      */
     public void solveBruteForce() {
 
+    }
+    /**
+     * Prints the details of the array.
+     * Will state size and current contents of the array.
+     */
+    public void printDetails() {
+        board.printDetails();
     }
 }
