@@ -56,9 +56,19 @@ public class Solver {
      */
     private boolean isValidLocation(char in,int x,int y) {
         //Check both x and y lines
-        for(int i = 0; i < board.getSize(); i++) {
-            if(board.getCell(x,i).getContent() != in || board.getCell(i,y).getContent() != in) {
+        for (int i = 0; i < board.getSize(); i++) {
+            if (board.getCell(x, i).getContent() != in || board.getCell(i, y).getContent() != in) {
                 return false;
+            }
+        }
+        //Check box the cell is in
+        int boxX = x % board.getBoxSize();
+        int boxY = y % board.getBoxSize();
+        for (int i = 0; i < board.getBoxSize(); i++) {
+            for (int j = 0; j < board.getBoxSize(); j++) {
+                if (board.getCell(boxX + i, boxY + j).getContent() != in) {
+                    return false;
+                }
             }
         }
         return true;
