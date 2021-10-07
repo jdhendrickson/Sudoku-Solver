@@ -28,6 +28,15 @@ class Board {
   }
   public int getSize() { return size; }
   public Cell[][] getCellArray() { return cellArray; }
+
+  /**
+   * Gets the size of the smaller box of the board.
+   * This would be a box of size 3 on a 9x9 board, or 4 on a 16x16 board.
+   * @return The size of the box
+   */
+  public int getBoxSize() {
+    return (int) Math.sqrt(size);
+  }
   /**
    * Get a particular cell
    * @param x The x coordinate
