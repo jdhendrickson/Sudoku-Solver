@@ -6,17 +6,18 @@ class Board {
   //The base size of the board. Traditional sudoku boards will have a size of 9
   private static int size;
   //The array the board is being held in
-  private static char[][] cellArray;
+  private static Cell[][] cellArray;
 
   /**
   * Defaults to a basic blank game board that is 9x9
   */
   public Board() {
     this.size = 3;
-    cellArray = new char[size][size];
+    cellArray = new Cell[size][size];
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-        cellArray[i][j] = 48;
+        cellArray[i][j] = new Cell();
+        cellArray[i][j].setContent('0');
       }
     }
   }
@@ -37,7 +38,7 @@ class Board {
     System.out.println("Array: ");
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-          System.out.print(cellArray[i][j]);
+          System.out.print(cellArray[i][j].getContent());
       }
       System.out.print("\n");
     }
@@ -66,7 +67,7 @@ class Board {
       for(int j = 0; j < size; j++) {
         out +="\"";
         //Add the contents of the cell
-        out += cellArray[i][j];
+        out += cellArray[i][j].getContent();
         out +="\",";
       }
       //Remove extra comma at the end
@@ -130,7 +131,7 @@ class Board {
         //Get the size from the string
         size = Integer.parseInt(sizeString);
         //Redefine the cell array with the proper size
-        cellArray = new char[size][size];
+        cellArray = new Cell[size][size];
       }
       ///Parse the contents of the array
       int arrayStart = file.indexOf("\"cellarray\"");//The location of "cellArray"
@@ -153,7 +154,8 @@ class Board {
           nextRowContents = file.substring(nextRowStart, nextRowEnd);
           //Split the row into it's contents
           for(int j = 0; j < size; j++) {
-            cellArray[i][j] = file.substring(nextRowStart + 1 + 4 * j, nextRowStart + 2 + 4 * j).charAt(0);
+            cellArray[i][j] = new Cell();
+            cellArray[i][j].setContent(file.substring(nextRowStart + 1 + 4 * j, nextRowStart + 2 + 4 * j).charAt(0));
           }
           i++;
         }
