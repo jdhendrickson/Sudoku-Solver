@@ -16,8 +16,7 @@ class Board {
     cellArray = new Cell[size][size];
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-        cellArray[i][j] = new Cell();
-        cellArray[i][j].setContent('0');
+        cellArray[i][j] = new Cell(false);
       }
     }
   }
@@ -169,8 +168,15 @@ class Board {
           nextRowContents = file.substring(nextRowStart, nextRowEnd);
           //Split the row into it's contents
           for(int j = 0; j < size; j++) {
-            cellArray[i][j] = new Cell();
+            //Assume cell started filled
+            cellArray[i][j] = new Cell(true);
+            //Populate cell
             cellArray[i][j].setContent(file.substring(nextRowStart + 1 + 4 * j, nextRowStart + 2 + 4 * j).charAt(0));
+            //Check if actually filled
+            if(cellArray[i][j].getContent()=='0') {
+              //Cell started blank
+              cellArray[i][j] = new Cell(false);
+            }
           }
           i++;
         }
