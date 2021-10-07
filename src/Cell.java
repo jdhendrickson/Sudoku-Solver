@@ -19,4 +19,12 @@ public class Cell {
     public void removeNote(char c) {
         notes.remove(Character.valueOf(c));
     }
+    /**
+     * Prints all the notes in the cell
+     */
+    public void printNotes() {
+        for (char i : notes) {
+            System.out.println(i);
+        }
+    }
 }
