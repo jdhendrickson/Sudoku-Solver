@@ -7,6 +7,7 @@ public class Cell {
     public Cell(boolean starter) {
         isStarter = starter;
         notes = new ArrayList<Character>();
+        content = Character.valueOf('0');
     }
     public boolean getIsStarter() {
         return isStarter;
