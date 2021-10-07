@@ -37,24 +37,6 @@ class Board {
     return cellArray[y][x];
   }
   /**
-   * Set a particular cell
-   * @param x The x coordinate
-   * @param y The y coordinate
-   * @param c The value to set the cell to
-   */
-  public void setCell(int x, int y, char c) {
-    cellArray[y][x].setContent(c);
-  }
-  /**
-   * Adds a note to a particular cell
-   * @param x The x coordinate
-   * @param y The y coordinate
-   * @param c The value to add as a note
-   */
-  public void addNote(int x, int y, char c) {
-    cellArray[y][x].addNote(c);
-  }
-  /**
    * Create a new game board from a specified json file
    */
   public Board(String in) {
