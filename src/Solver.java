@@ -39,7 +39,7 @@ public class Solver {
             char i = 0;
             while (i < board.getSize()) {
                 i++;
-                if (isValidLocation((char) ('0' + i), x, y)) {
+                if (isValidLocation((char) ('0' + i), x, y,false)) {
                     board.getCell(x,y).setContent((char) ('0' + i));
                     solveByBruteForce(x, y);
                 }
@@ -54,19 +54,38 @@ public class Solver {
      * @param y The y-location
      * @return Can the char be placed there?
      */
-    private boolean isValidLocation(char in,int x,int y) {
+    private boolean isValidLocation(char in,int x,int y,boolean verbose) {
         //Check both x and y lines
         for (int i = 0; i < board.getSize(); i++) {
-            if (board.getCell(x, i).getContent() != in || board.getCell(i, y).getContent() != in) {
+            if (board.getCell(x, i).getContent() == in) {
+                if (verbose) {
+                    System.out.println("Invalid from y at " + x + "," + i +
+                            ", found a " + board.getCell(i, y).getContent());
+                }
+                return false;
+            }
+            if (board.getCell(i, y).getContent() == in) {
+                if (verbose) {
+                    System.out.println("Invalid from x at " + i + "," + y +
+                            ", found a " + board.getCell(i, y).getContent());
+                }
                 return false;
             }
         }
         //Check box the cell is in
-        int boxX = x % board.getBoxSize();
-        int boxY = y % board.getBoxSize();
+        int boxX = (x / board.getBoxSize()) * board.getBoxSize();
+        int boxY = (y / board.getBoxSize()) * board.getBoxSize();
+        if (verbose) {
+            System.out.println("Checking from " + boxX + "," + boxY + " to "
+                    + (boxX + board.getBoxSize() - 1) + "," + (boxY + board.getBoxSize() - 1));
+        }
         for (int i = 0; i < board.getBoxSize(); i++) {
             for (int j = 0; j < board.getBoxSize(); j++) {
-                if (board.getCell(boxX + i, boxY + j).getContent() != in) {
+                if (board.getCell(boxX + i, boxY + j).getContent() == in) {
+                    if (verbose) {
+                        System.out.println("Invalid from box at " + (boxX + i) + "," + (boxY + j) +
+                                ", found a " + board.getCell((boxX + i), (boxY + j)).getContent());
+                    }
                     return false;
                 }
             }
