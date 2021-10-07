@@ -1,7 +1,10 @@
 public class Solver {
     Board board;
+    /**
+     * Defaults to input.json as the input file
+     */
     public Solver() {
-        board = new Board();
+        board = new Board("input.json");
     }
     public Solver(String in) {
         board = new Board(in);
