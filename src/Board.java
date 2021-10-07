@@ -21,6 +21,22 @@ class Board {
       }
     }
   }
+  public static int getSize() {
+    return size;
+  }
+  public static Cell[][] getCellArray() {
+    return cellArray;
+  }
+  /**
+   * Get a particular cell
+   * @param x The x coordinate
+   * @param y The y coordinate
+   * @return A reference to the cell at that point
+   */
+  public Cell getCell(int x, int y) {
+    return cellArray[x][y];
+  }
+
   /**
    * Create a new game board from a specified json file
    */
