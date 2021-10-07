@@ -26,12 +26,8 @@ class Board {
   public Board(String in) {
     importFromJson(in);
   }
-  public static int getSize() {
-    return size;
-  }
-  public static Cell[][] getCellArray() {
-    return cellArray;
-  }
+  public int getSize() { return size; }
+  public Cell[][] getCellArray() { return cellArray; }
   /**
    * Get a particular cell
    * @param x The x coordinate
