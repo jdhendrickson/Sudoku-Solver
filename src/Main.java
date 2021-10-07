@@ -5,6 +5,6 @@ class Main {
        Board board = new Board();
        Solver solver = new Solver();
        solver.solveBruteForce();
-       solver.board.printDetails();
+       solver.printDetails();
    }
 }
