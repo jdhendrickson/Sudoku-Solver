@@ -1,15 +1,10 @@
-class Main {
-    private static int size;
-    private static char[][] cellArray;
+import java.util.ArrayList;
 
+class Main {
    public static void main(String[] args) {
        Board board = new Board();
-       board.printDetails();
-       try {
-           board.importFromJson();
-           board.sendToJson();
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
+       Solver solver = new Solver();
+       solver.solveBruteForce();
+       solver.board.printDetails();
    }
 }
