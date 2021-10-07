@@ -9,7 +9,7 @@ class Board {
   private static Cell[][] cellArray;
 
   /**
-  * Defaults to a basic blank game board that is 9x9
+  * Defaults to a basic blank game board that is 3x3
   */
   public Board() {
     this.size = 3;
@@ -19,6 +19,12 @@ class Board {
         cellArray[i][j] = new Cell(false);
       }
     }
+  }
+  /**
+   * Create a new game board from a specified json file
+   */
+  public Board(String in) {
+    importFromJson(in);
   }
   public static int getSize() {
     return size;
@@ -35,13 +41,6 @@ class Board {
   public Cell getCell(int x, int y) {
     return cellArray[y][x];
   }
-  /**
-   * Create a new game board from a specified json file
-   */
-  public Board(String in) {
-    importFromJson(in);
-  }
-
   /**
   * Prints the details of the array.
   * Will state size and current contents of the array.
