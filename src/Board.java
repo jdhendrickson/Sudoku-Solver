@@ -6,17 +6,17 @@ class Board {
   //The base size of the board. Traditional sudoku boards will have a size of 9
   private static int size;
   //The array the board is being held in
-  private static char[][] cellArray;
+  private static Cell[][] cellArray;
 
   /**
-  * Defaults to a basic blank game board that is 9x9
+  * Defaults to a basic blank game board that is 3x3
   */
   public Board() {
     this.size = 3;
-    cellArray = new char[size][size];
+    cellArray = new Cell[size][size];
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-        cellArray[i][j] = 48;
+        cellArray[i][j] = new Cell(false);
       }
     }
   }
@@ -26,7 +26,26 @@ class Board {
   public Board(String in) {
     importFromJson(in);
   }
+  public int getSize() { return size; }
+  public Cell[][] getCellArray() { return cellArray; }
 
+  /**
+   * Gets the size of the smaller box of the board.
+   * This would be a box of size 3 on a 9x9 board, or 4 on a 16x16 board.
+   * @return The size of the box
+   */
+  public int getBoxSize() {
+    return (int) Math.sqrt(size);
+  }
+  /**
+   * Get a particular cell
+   * @param x The x coordinate
+   * @param y The y coordinate
+   * @return A reference to the cell at that point
+   */
+  public Cell getCell(int x, int y) {
+    return cellArray[y][x];
+  }
   /**
   * Prints the details of the array.
   * Will state size and current contents of the array.
@@ -37,7 +56,7 @@ class Board {
     System.out.println("Array: ");
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-          System.out.print(cellArray[i][j]);
+          cellArray[i][j].printContent();
       }
       System.out.print("\n");
     }
@@ -66,7 +85,7 @@ class Board {
       for(int j = 0; j < size; j++) {
         out +="\"";
         //Add the contents of the cell
-        out += cellArray[i][j];
+        out += cellArray[i][j].getContent();
         out +="\",";
       }
       //Remove extra comma at the end
@@ -130,7 +149,7 @@ class Board {
         //Get the size from the string
         size = Integer.parseInt(sizeString);
         //Redefine the cell array with the proper size
-        cellArray = new char[size][size];
+        cellArray = new Cell[size][size];
       }
       ///Parse the contents of the array
       int arrayStart = file.indexOf("\"cellarray\"");//The location of "cellArray"
@@ -153,7 +172,15 @@ class Board {
           nextRowContents = file.substring(nextRowStart, nextRowEnd);
           //Split the row into it's contents
           for(int j = 0; j < size; j++) {
-            cellArray[i][j] = file.substring(nextRowStart + 1 + 4 * j, nextRowStart + 2 + 4 * j).charAt(0);
+            //Assume cell started filled
+            cellArray[i][j] = new Cell(true);
+            //Populate cell
+            cellArray[i][j].setContent(file.substring(nextRowStart + 1 + 4 * j, nextRowStart + 2 + 4 * j).charAt(0));
+            //Check if actually filled
+            if(cellArray[i][j].getContent()=='0') {
+              //Cell started blank
+              cellArray[i][j] = new Cell(false);
+            }
           }
           i++;
         }
