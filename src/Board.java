@@ -37,6 +37,43 @@ class Board {
   public int getBoxSize() {
     return (int) Math.sqrt(size);
   }
+
+  /**
+   * Gets the number of hints the board starts with
+   * @return The number of hints the board starts with
+   */
+  public int getStartingCount() {
+    int out = 0;
+    //Go through the x-direction of the board
+    for (int x = 0; x < size; x++) {
+      //Go through the y-direction of the board
+      for (int y = 0; y < size; y++) {
+        if (cellArray[y][x].getIsStarter()) {
+          //If the value has been marked as a starter
+          out++;
+        }
+      }
+    }
+    return out;
+  }
+  /**
+   * Gets the number of hints the board starts with
+   * @return The number of hints the board starts with
+   */
+  public int getSolvedCount() {
+    int out = 0;
+    //Go through the x-direction of the board
+    for (int x = 0; x < size; x++) {
+      //Go through the y-direction of the board
+      for (int y = 0; y < size; y++) {
+        if (cellArray[y][x].getContent() != '0') {
+          //If the value is not the default starting value
+          out++;
+        }
+      }
+    }
+    return out;
+  }
   /**
    * Get a particular cell
    * @param x The x coordinate
