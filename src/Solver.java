@@ -19,6 +19,12 @@ public class Solver {
     public Board solveBruteForce() {
         return solveByBruteForce(0,0);
     }
+    /**
+     * A recursive function to brute force the sudoku puzzle
+     * @param x Where the function is on the x-axis
+     * @param y Where the function is on the y-axis
+     * @return The current board state. Top level will return the completed board.
+     */
     private Board solveByBruteForce(int x, int y) {
         if(x < board.getSize() - 1) {
             x++;
