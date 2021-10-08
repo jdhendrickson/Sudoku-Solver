@@ -128,10 +128,10 @@ public class Solver {
     }
 
     /**
-     * Prints the details of the array.
-     * Will state size and current contents of the array.
+     * Prints the current board status.
+     * Will state size and current filled cells on the board.
      */
-    public void printDetails() {
-        board.printDetails();
+    public void printBoard() {
+        board.printBoard();
     }
 }

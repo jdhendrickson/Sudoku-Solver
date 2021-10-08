@@ -37,7 +37,6 @@ class Board {
   public int getBoxSize() {
     return (int) Math.sqrt(size);
   }
-
   /**
    * Gets the number of hints the board starts with
    * @return The number of hints the board starts with
@@ -84,10 +83,10 @@ class Board {
     return cellArray[y][x];
   }
   /**
-  * Prints the details of the array.
-  * Will state size and current contents of the array.
+  * Prints the current board status.
+  * Will state size and current filled cells on the board.
   */
-  public void printDetails() {
+  public void printBoard() {
     System.out.print("Size: ");
     System.out.println(size);
     System.out.println("Array: ");
