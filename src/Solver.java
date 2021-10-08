@@ -17,34 +17,37 @@ public class Solver {
      * Warning: Uses a lot of processing power and time
      */
     public Board solveBruteForce() {
-        solveByBruteForce(0,0);
-        return board;
+        return solveByBruteForce(0,0);
     }
-    private void solveByBruteForce(int x, int y) {
-        System.out.println("x:"+x+"y:"+y);
-        if(x < board.getSize()) {
+    private Board solveByBruteForce(int x, int y) {
+        if(x < board.getSize() - 1) {
             x++;
-        } else if(y < board.getSize()) {
+        } else if(y < board.getSize() - 1) {
             y++;
+            x = 0;
         } else {
             //Last value has been found, sudoku has been solved
-            board.printDetails();
-            return;
+            System.out.println("SOLVED");
+            solved = true;
+            return board;
         }
         //Check if it's one of the given locations
         if(board.getCell(x,y).getIsStarter()) {
             //is a starter, don't need to do anything to this cell
-            solveByBruteForce(x, y);
+            return solveByBruteForce(x, y);
         } else {
-            char i = 0;
-            while (i < board.getSize()) {
+            char i = '0';
+            while ((i - '0') < board.getSize() && !solved) {
                 i++;
-                if (isValidLocation((char) ('0' + i), x, y,false)) {
-                    board.getCell(x,y).setContent((char) ('0' + i));
+                if (isValidLocation(i, x, y,false)) {
+                    board.getCell(x,y).setContent(i);
                     solveByBruteForce(x, y);
+                    if(!solved)
+                        board.getCell(x,y).setContent('0');
                 }
             }
         }
+        return board;
     }
 
     /**
