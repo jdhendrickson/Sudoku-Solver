@@ -39,7 +39,7 @@ public class Solver {
             return board;
         }
         //Check if it's one of the given locations
-        if(board.getCell(x,y).getIsStarter()) {
+        if(board.getCell(x,y).isStarter()) {
             //is a starter, don't need to do anything to this cell
             return solveByBruteForce(x, y);
         } else {
@@ -61,20 +61,15 @@ public class Solver {
      *
      */
     public Board populateNotes() {
-        int[] valueCount = new int[board.getSize()];
         //For each value that can be in the sudoku
-        for (int i = 0; i < valueCount.length; i++) {
+        for (int i = 0; i < board.getSize(); i++) {
             //Go through the x-direction of the board
             for (int j = 0; j < board.getSize(); j++) {
                 //Go through the y-direction of the board
                 for (int k = 0; k < board.getSize(); k++) {
-                    if(board.getCell(j,k).getContent() == (char) ('0'+i)) {
-                        valueCount[i]++;
-                    }
+
                 }
             }
-            System.out.println("" + ('0'+i) + " " + valueCount[i]);
-
         }
         return board;
     }

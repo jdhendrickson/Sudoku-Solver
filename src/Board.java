@@ -48,7 +48,7 @@ class Board {
     for (int x = 0; x < size; x++) {
       //Go through the y-direction of the board
       for (int y = 0; y < size; y++) {
-        if (cellArray[y][x].getIsStarter()) {
+        if (cellArray[y][x].isStarter()) {
           //If the value has been marked as a starter
           out++;
         }

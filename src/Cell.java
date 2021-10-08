@@ -9,9 +9,10 @@ public class Cell {
         notes = new ArrayList<Character>();
         content = Character.valueOf('0');
     }
-    public boolean getIsStarter() {
+    public boolean isStarter() {
         return isStarter;
     }
+    public boolean isSolved() {return content != '0';}
     public char getContent() {
         return content;
     }
