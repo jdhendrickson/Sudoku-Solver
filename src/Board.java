@@ -66,8 +66,8 @@ class Board {
     for (int x = 0; x < size; x++) {
       //Go through the y-direction of the board
       for (int y = 0; y < size; y++) {
-        if (cellArray[y][x].getContent() != '0') {
-          //If the value is not the default starting value
+        if (cellArray[y][x].isSolved()) {
+          //If the cell has been solved
           out++;
         }
       }
