@@ -61,13 +61,20 @@ public class Solver {
      *
      */
     public Board populateNotes() {
-        //For each value that can be in the sudoku
+        //Go through the x-direction of the board
         for (int i = 0; i < board.getSize(); i++) {
-            //Go through the x-direction of the board
+            //Go through the y-direction of the board
             for (int j = 0; j < board.getSize(); j++) {
-                //Go through the y-direction of the board
+                //For each value that can be in the sudoku
                 for (int k = 0; k < board.getSize(); k++) {
-
+                    //If the value is not yet solved
+                    if (!board.getCell(i,j).isSolved()) {
+                        //If it is a valid location for that character
+                        if (isValidLocation((char) ('0' + k), i, j, false)) {
+                            //Add the note
+                            board.getCell(i, j).addNote((char) ('0' + k));
+                        }
+                    }
                 }
             }
         }
