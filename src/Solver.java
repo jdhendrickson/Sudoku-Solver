@@ -15,6 +15,7 @@ public class Solver {
     /**
      * Solves the sudoku using Brute Force.
      * Warning: Uses a lot of processing power and time
+     * @return The solved sudoku board
      */
     public Board solveBruteForce() {
         return solveByBruteForce(0,0);
@@ -52,6 +53,28 @@ public class Solver {
                         board.getCell(x,y).setContent('0');
                 }
             }
+        }
+        return board;
+    }
+
+    /**
+     *
+     */
+    public Board populateNotes() {
+        int[] valueCount = new int[board.getSize()];
+        //For each value that can be in the sudoku
+        for (int i = 0; i < valueCount.length; i++) {
+            //Go through the x-direction of the board
+            for (int j = 0; j < board.getSize(); j++) {
+                //Go through the y-direction of the board
+                for (int k = 0; k < board.getSize(); k++) {
+                    if(board.getCell(j,k).getContent() == (char) ('0'+i)) {
+                        valueCount[i]++;
+                    }
+                }
+            }
+            System.out.println("" + ('0'+i) + " " + valueCount[i]);
+
         }
         return board;
     }
