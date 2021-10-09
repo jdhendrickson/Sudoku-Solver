@@ -101,13 +101,17 @@ class Board {
    * Prints out all the notes in the board
    */
   public void printNotes() {
+    /* Removed until cell note display works
     //Create the horizontal border between cells
     String printLines = "+";
     for (int i = 0; i < getBoxSize(); i++) {
       printLines += "-";
     }
+    printLines += "+";
 
     System.out.println(printLines);
+     */
+    cellArray[0][0].printNotes();
   }
 
   /**
