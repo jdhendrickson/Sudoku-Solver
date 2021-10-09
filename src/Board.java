@@ -121,13 +121,17 @@ class Board {
     out += printLines;
     //Create a single row
     ArrayList<Character> currentNotes;
+    //For each y position
     for (int y = 0; y < size; y++) {
+      //For each of the rows the notes are displayed on
       for (int row = 0; row < getBoxSize(); row++) {
+        //Go through all the different boxes
         for (int x1 = 0; x1 < getBoxSize(); x1++) {
-          //This was split up to create the double-line between cells
           out += "|";
+          //Go through all the cells in each box
           for (int x2 = 0; x2 < getBoxSize(); x2++) {
             currentNotes = getCell((x1 * getBoxSize()) + x2, y).getNotes();
+            //Check all the numbers that will be on the current row
             for (char j = 1; j <= getBoxSize(); j++) {
               //Check if the iterator is a note
               if (currentNotes.contains(Cell.iterToChar((char) ((row * 3) + j)))) {
