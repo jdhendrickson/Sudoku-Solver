@@ -121,17 +121,17 @@ class Board {
     out += printLines;
     //Create a single row
     ArrayList<Character> currentNotes;
-    for(int y = 0; y < getBoxSize(); y++) {
+    for(int row = 0; row < getBoxSize(); row++) {
       for (int x1 = 0; x1 < getBoxSize(); x1++) {
         //This was split up to create the double-line between cells
         out += "|";
         for (int x2 = 0; x2 < getBoxSize(); x2++) {
-          currentNotes = getCell((x1 * getBoxSize()) + x2, y).getNotes();
+          currentNotes = getCell((x1 * getBoxSize()) + x2, 0).getNotes();
           for (char j = 1; j <= getBoxSize(); j++) {
             //Check if the iterator is a note
-            if (currentNotes.contains(Cell.iterToChar(j))) {
+            if (currentNotes.contains(Cell.iterToChar((char) ((row * 3) + j)))) {
               //Add the note to what will be printed
-              out += Cell.iterToChar(j);
+              out += Cell.iterToChar((char) ((row * 3) + j));
             } else {
               out += " ";
             }
@@ -141,6 +141,8 @@ class Board {
       }
       out += "\n";
     }
+    out += printLines;
+    
     System.out.println(out);
   }
 
