@@ -84,19 +84,34 @@ class Board {
     return cellArray[y][x];
   }
   /**
-  * Prints the current board status.
-  * Will state size and current filled cells on the board.
+  * Prints the current board.
+  * Will state current filled cells on the board.
   */
   public void printBoard() {
-    System.out.print("Size: ");
-    System.out.println(size);
-    System.out.println("Array: ");
-    for(int i = 0; i < size; i++) {
-      for(int j = 0; j < size; j++) {
-          cellArray[i][j].printContent();
-      }
-      System.out.print("\n");
+    String printLine = "-";
+    for(int i = 0; i < size + getBoxSize(); i++) {
+      printLine += "-";
     }
+    printLine += "\n";
+    String out = printLine;
+    //Go through every box on the board
+    for (int y1 = 0; y1 < getBoxSize(); y1++) {
+      //Go through every cell in the box
+      for (int y2 = 0; y2 < getBoxSize(); y2++) {
+        out += "|";
+        //Go through every box on the board
+        for (int x1 = 0; x1 < getBoxSize(); x1++) {
+          //Go through every cell in the box
+          for (int x2 = 0; x2 < getBoxSize(); x2++) {
+            out += getCell(x1 + x2, y1 + y2).getContent();
+          }
+          out += "|";
+        }
+        out += "\n";
+      }
+      out += printLine;
+    }
+    System.out.println(out);
   }
   /**
    * Prints out all the notes in the board
