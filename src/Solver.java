@@ -1,5 +1,5 @@
 public class Solver {
-    private Board board;
+     Board board;
     private boolean solved;
     /**
      * Defaults to input.json as the input file

@@ -1,6 +1,7 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 class Board {
   //The base size of the board. Traditional sudoku boards will have a size of 9
@@ -101,6 +102,7 @@ class Board {
    * Prints out all the notes in the board
    */
   public void printNotes() {
+    String printLines = "";
     /* Removed until cell note display works
     //Create the horizontal border between cells
     String printLines = "+";
@@ -111,7 +113,12 @@ class Board {
 
     System.out.println(printLines);
      */
-    cellArray[0][0].printNotes();
+    ArrayList<Character> currentNotes = cellArray[0][0].getNotes();
+    for (int i = 0; i < getBoxSize(); i++) {
+      for (int j = 0; j < getBoxSize(); j++) {
+        printLines += "-";
+      }
+    }
   }
 
   /**
