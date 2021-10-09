@@ -103,30 +103,43 @@ class Board {
    */
   public void printNotes() {
     String out = "";
-    /* Removed until cell note display works
     //Create the horizontal border between cells
-    String printLines = "+";
+    String printLines = "";
     for (int i = 0; i < getBoxSize(); i++) {
-      printLines += "-";
-    }
-    printLines += "+";
-     */
-    ArrayList<Character> currentNotes;
-    for(int x1 = 0; x1 < getBoxSize(); x1++) {
-      out += "|";
-      for (int x2 = 0; x2 < getBoxSize(); x2++) {
-        currentNotes = getCell((x1 * getBoxSize()) + x2, 0).getNotes();
-        for (char j = 1; j <= getBoxSize(); j++) {
-          //Check if the iterator is a note
-          if (currentNotes.contains(Cell.iterToChar(j))) {
-            //Add the note to what will be printed
-            out += Cell.iterToChar(j);
-          } else {
-            out += " ";
-          }
+      printLines += "+";
+      //Create a border for a single box
+      for (int j = 0; j < getBoxSize(); j++) {
+        //Create border for a single cell
+        for (int k = 0; k < getBoxSize(); k++) {
+          printLines += "-";
         }
-        out += "|";
+        printLines += "+";
       }
+    }
+
+    printLines += "\n";
+    out += printLines;
+    //Create a single row
+    ArrayList<Character> currentNotes;
+    for(int y = 0; y < getBoxSize(); y++) {
+      for (int x1 = 0; x1 < getBoxSize(); x1++) {
+        //This was split up to create the double-line between cells
+        out += "|";
+        for (int x2 = 0; x2 < getBoxSize(); x2++) {
+          currentNotes = getCell((x1 * getBoxSize()) + x2, y).getNotes();
+          for (char j = 1; j <= getBoxSize(); j++) {
+            //Check if the iterator is a note
+            if (currentNotes.contains(Cell.iterToChar(j))) {
+              //Add the note to what will be printed
+              out += Cell.iterToChar(j);
+            } else {
+              out += " ";
+            }
+          }
+          out += "|";
+        }
+      }
+      out += "\n";
     }
     System.out.println(out);
   }
