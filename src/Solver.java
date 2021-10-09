@@ -134,4 +134,10 @@ public class Solver {
     public void printBoard() {
         board.printBoard();
     }
+    /**
+     * Prints the current note status.
+     */
+    public void printNotes() {
+        board.printNotes();
+    }
 }

@@ -98,6 +98,19 @@ class Board {
     }
   }
   /**
+   * Prints out all the notes in the board
+   */
+  public void printNotes() {
+    //Create the horizontal border between cells
+    String printLines = "+";
+    for (int i = 0; i < getBoxSize(); i++) {
+      printLines += "-";
+    }
+
+    System.out.println(printLines);
+  }
+
+  /**
    * Saves the current board state as a json file. Defaults to "Default.json"
    */
   public void sendToJson() {
