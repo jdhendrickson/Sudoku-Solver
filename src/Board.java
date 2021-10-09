@@ -102,7 +102,7 @@ class Board {
    * Prints out all the notes in the board
    */
   public void printNotes() {
-    String printLines = "";
+    String out = "";
     /* Removed until cell note display works
     //Create the horizontal border between cells
     String printLines = "+";
@@ -110,15 +110,25 @@ class Board {
       printLines += "-";
     }
     printLines += "+";
-
-    System.out.println(printLines);
      */
-    ArrayList<Character> currentNotes = cellArray[0][0].getNotes();
-    for (int i = 0; i < getBoxSize(); i++) {
-      for (int j = 0; j < getBoxSize(); j++) {
-        printLines += "-";
+    ArrayList<Character> currentNotes;
+    for(int x1 = 0; x1 < getBoxSize(); x1++) {
+      out += "|";
+      for (int x2 = 0; x2 < getBoxSize(); x2++) {
+        currentNotes = getCell((x1 * getBoxSize()) + x2, 0).getNotes();
+        for (char j = 1; j <= getBoxSize(); j++) {
+          //Check if the iterator is a note
+          if (currentNotes.contains(Cell.iterToChar(j))) {
+            //Add the note to what will be printed
+            out += Cell.iterToChar(j);
+          } else {
+            out += " ";
+          }
+        }
+        out += "|";
       }
     }
+    System.out.println(out);
   }
 
   /**
