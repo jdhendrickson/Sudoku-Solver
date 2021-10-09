@@ -43,4 +43,13 @@ public class Cell {
     public void printContent() {
         System.out.print(content);
     }
+
+    /**
+     * Converts an iterator to the character that is equivalent to it
+     * @param in The iterator to be converted
+     * @return The converted char
+     */
+    public static char iterToChar(char in) {
+        return (char) ('0' + in);
+    }
 }
