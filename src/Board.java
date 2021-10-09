@@ -249,4 +249,14 @@ class Board {
 
     }
   }
+
+  /**
+   * Compare an iterator to a character
+   * @param iterator The iterator to be compared. Must be smaller than board size.
+   * @param compared The char the iterator is being compared to. Will probably be larger than '0'.
+   * @return Is the iterator equal to the compared?
+   */
+  public boolean isEqual(char iterator, char compared) {
+    return  ('0' + iterator) == compared;
+  }
 }
