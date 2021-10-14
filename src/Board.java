@@ -168,19 +168,11 @@ class Board {
     }
     System.out.println(out);
   }
-
   /**
-   * Saves the current board state as a json file. Defaults to "Default.json"
+   * Returns the current board state as a json-formatted string
+   * @return The current board state
    */
-  public void sendToJson() {
-    sendToJson("Default");
-  }
-  /**
-   * Saves the current board state as a json file.
-   * Note that this saves as a .json file, not as a text file in json format.
-   * @param fileName The name of the file. Do not include the file extension.
-   */
-  public void sendToJson(String fileName) {
+  public String sendToJson() {
     //Add the size
     String out = "{\n\t\"size\":";
     out += size;
@@ -203,7 +195,14 @@ class Board {
     //Remove extra comma at the end
     out = out.substring(0,out.length() - 1);
     out += "\n\t]\n}";
-    //Write the json to the file
+    return out;
+  }
+  /**
+   * Saves the current board state as a json file.
+   * Note that this saves as a .json file, not as a text file in json format.
+   * @param fileName The name of the file. Do not include the file extension.
+   */
+  public void saveAsJson(String fileName) {
     try {
       //Ensure the file is created
       File output = new File(fileName + ".json");
@@ -215,7 +214,7 @@ class Board {
       //Create a filewriter
       FileWriter myWriter = new FileWriter(output.getName());
       //Write the json
-      myWriter.write(out);
+      myWriter.write(sendToJson());
       //Close the file
       myWriter.close();
       System.out.println("Json file written to.");
