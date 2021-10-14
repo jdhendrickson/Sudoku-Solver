@@ -91,6 +91,7 @@ public class Solver {
     private boolean isValidLocation(char in,int x,int y,boolean verbose) {
         //Check both x and y lines
         for (int i = 0; i < board.getSize(); i++) {
+            //check the x line
             if (board.getCell(x, i).getContent() == in) {
                 if (verbose) {
                     System.out.println("Invalid from y at " + x + "," + i +
@@ -98,6 +99,7 @@ public class Solver {
                 }
                 return false;
             }
+            //check the y line
             if (board.getCell(i, y).getContent() == in) {
                 if (verbose) {
                     System.out.println("Invalid from x at " + i + "," + y +
