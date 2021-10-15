@@ -167,4 +167,12 @@ public class Solver {
     public void printNotes() {
         board.printNotes();
     }
+    /**
+     * Saves the current board state as a json file.
+     * Note that this saves as a .json file, not as a text file in json format.
+     * @param fileName The name of the file. Do not include the file extension.
+     */
+    public void saveAsJson(String fileName) {
+        board.saveAsJson(fileName);
+    }
 }
