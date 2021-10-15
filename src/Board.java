@@ -148,12 +148,18 @@ class Board {
             currentNotes = getCell((x1 * getBoxSize()) + x2, y).getNotes();
             //Check all the numbers that will be on the current row
             for (char j = 1; j <= getBoxSize(); j++) {
-              //Check if the iterator is a note
-              if (currentNotes.contains(Cell.iterToChar((char) ((row * 3) + j)))) {
-                //Add the note to what will be printed
-                out += Cell.iterToChar((char) ((row * 3) + j));
+              //Check if the cell is solved
+              if (getCell((x1 * getBoxSize()) + x2, y).isSolved()) {
+                out += getCell((x1 * getBoxSize()) + x2, y).getContent();
               } else {
-                out += " ";
+                //Check if the iterator is a note
+                if (currentNotes.contains(Cell.iterToChar((char) ((row * 3) + j)))) {
+                  //Add the note to what will be printed
+                  out += Cell.iterToChar((char) ((row * 3) + j));
+                } else {
+                  //Add a spacer if the iterator is not a note
+                  out += " ";
+                }
               }
             }
             out += "|";
