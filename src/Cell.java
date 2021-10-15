@@ -9,9 +9,10 @@ public class Cell {
         notes = new ArrayList<Character>();
         content = Character.valueOf('0');
     }
-    public boolean getIsStarter() {
+    public boolean isStarter() {
         return isStarter;
     }
+    public boolean isSolved() {return content != '0';}
     public char getContent() {
         return content;
     }
@@ -41,5 +42,14 @@ public class Cell {
      */
     public void printContent() {
         System.out.print(content);
+    }
+
+    /**
+     * Converts an iterator to the character that is equivalent to it
+     * @param in The iterator to be converted
+     * @return The converted char
+     */
+    public static char iterToChar(char in) {
+        return (char) ('0' + in);
     }
 }
