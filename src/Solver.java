@@ -58,7 +58,30 @@ public class Solver {
     }
 
     /**
-     *
+     * Solves a board based off deduction.
+     * This populates all the notes, and then finds which cells only have a single note.
+     * It then repeats this process.
+     * @return A solved board
+     */
+    public Board solveByDeduction() {
+        //Populate all the notes
+        populateNotes();
+        //Find any cells that only have a single note, and then solve them
+        for (int x = 0; x < board.getSize(); x++) {
+            for (int y = 0; y < board.getSize(); y++) {
+                //If there is only one note
+                if (board.getCell(x,y).getNotes().size() == 1) {
+                    //That note is the solved value
+                    board.getCell(x,y).setContent(board.getCell(x,y).getNotes().get(0));
+                }
+            }
+        }
+        return board;
+    }
+
+    /**
+     * Automatically populates the notes based off the formula in 'isValidLocation'
+     * @return A board in which all the cells are either solved or populated with notes
      */
     public Board populateNotes() {
         //Go through the x-direction of the board
