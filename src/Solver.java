@@ -64,15 +64,21 @@ public class Solver {
      * @return A solved board
      */
     public Board solveByDeduction() {
-        //Populate all the notes
-        populateNotes();
-        //Find any cells that only have a single note, and then solve them
-        for (int x = 0; x < board.getSize(); x++) {
-            for (int y = 0; y < board.getSize(); y++) {
-                //If there is only one note
-                if (board.getCell(x,y).getNotes().size() == 1) {
-                    //That note is the solved value
-                    board.getCell(x,y).setContent(board.getCell(x,y).getNotes().get(0));
+        int i = 0;
+        while (i < 1) {
+            i++;
+            //Populate all the notes
+            populateNotes();
+            //Find any cells that only have a single note, and then solve them
+            for (int x = 0; x < board.getSize(); x++) {
+                for (int y = 0; y < board.getSize(); y++) {
+                    //If there is only one note
+                    if (board.getCell(x, y).getNotes().size() == 1) {
+                        //That note is the solved value
+                        board.getCell(x, y).setContent(board.getCell(x, y).getNotes().get(0));
+                        //Reset and look for next solved
+                        i = 0;
+                    }
                 }
             }
         }
