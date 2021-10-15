@@ -103,7 +103,7 @@ class Board {
         for (int x1 = 0; x1 < getBoxSize(); x1++) {
           //Go through every cell in the box
           for (int x2 = 0; x2 < getBoxSize(); x2++) {
-            out += getCell((x1 * 3) + x2, y1 + y2).getContent();
+            out += getCell((x1 * 3) + x2, (y1 * 3) + y2).getContent();
           }
           out += "|";
         }
