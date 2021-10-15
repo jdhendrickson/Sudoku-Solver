@@ -85,17 +85,19 @@ public class Solver {
      */
     public Board populateNotes() {
         //Go through the x-direction of the board
-        for (int i = 0; i < board.getSize(); i++) {
+        for (int x = 0; x < board.getSize(); x++) {
             //Go through the y-direction of the board
-            for (int j = 0; j < board.getSize(); j++) {
+            for (int y = 0; y < board.getSize(); y++) {
+                //Remove all current notes
+                board.getCell(x,y).getNotes().clear();
                 //For each value that can be in the sudoku
                 for (int k = 0; k < board.getSize(); k++) {
                     //If the value is not yet solved
-                    if (!board.getCell(i,j).isSolved()) {
+                    if (!board.getCell(x,y).isSolved()) {
                         //If it is a valid location for that character
-                        if (isValidLocation((char) ('0' + k), i, j, false)) {
+                        if (isValidLocation((char) ('0' + k), x, y, false)) {
                             //Add the note
-                            board.getCell(i, j).addNote((char) ('0' + k));
+                            board.getCell(x, y).addNote((char) ('0' + k));
                         }
                     }
                 }
