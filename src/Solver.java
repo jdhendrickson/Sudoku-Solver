@@ -97,13 +97,13 @@ public class Solver {
                 //Remove all current notes
                 board.getCell(x,y).getNotes().clear();
                 //For each value that can be in the sudoku
-                for (int k = 0; k < board.getSize(); k++) {
+                for (char k = 0; k < board.getSize(); k++) {
                     //If the value is not yet solved
                     if (!board.getCell(x,y).isSolved()) {
                         //If it is a valid location for that character
-                        if (isValidLocation((char) ('0' + k), x, y, false)) {
+                        if (isValidLocation(Helpers.iterToChar(k), x, y, false)) {
                             //Add the note
-                            board.getCell(x, y).addNote((char) ('0' + k));
+                            board.getCell(x, y).addNote(Helpers.iterToChar(k));
                         }
                     }
                 }
