@@ -1,15 +1,13 @@
 class Main {
    public static void main(String[] args) {
        Board board = new Board();
-       Solver solver = new Solver();
-       solver.solveByDeduction();
+       Solver solver = new Solver("16x16Test.json");
        solver.printBoard();
-       String temp = "";
-       char j;
-       for(char i = 0; i < 36; i++) {
-           j = Helpers.iterToChar(i);
-           temp +=  (  + i) + ":" + j + "\n";
-       }
-       System.out.println(temp);
+       /*
+       solver.populateNotes();
+       solver.printNotes();
+       //*/
+       solver.solveBruteForce();
+       solver.printBoard();
    }
 }

@@ -43,11 +43,11 @@ public class Solver {
             //is a starter, don't need to do anything to this cell
             return solveByBruteForce(x, y);
         } else {
-            char i = '0';
-            while ((i - '0') < board.getSize() && !solved) {
+            char i = 0;
+            while (i < board.getSize() && !solved) {
                 i++;
-                if (isValidLocation(i, x, y,false)) {
-                    board.getCell(x,y).setContent(i);
+                if (isValidLocation(Helpers.iterToChar(i), x, y,false)) {
+                    board.getCell(x,y).setContent(Helpers.iterToChar(i));
                     solveByBruteForce(x, y);
                     if(!solved)
                         board.getCell(x,y).setContent('0');
