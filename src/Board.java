@@ -221,10 +221,9 @@ class Board {
     try {
       //Read in the file
       String file = Files.readString(filePath);//Get the file as a massive string
-      file = file.toLowerCase();//Ensure there are no upper case letters to simplify comparisons
       file = file.replaceAll("\\s","");//Remove excess white space
       ///Find the size of the array
-      int sizeLoc = file.indexOf("\"size\"");//The location of "size"
+      int sizeLoc = file.toLowerCase().indexOf("\"size\"");//The location of "size"
       if(sizeLoc == -1) {//If no size was found
         //Exit
         System.out.println("No Size Found in json input");
@@ -239,7 +238,7 @@ class Board {
         cellArray = new Cell[size][size];
       }
       ///Parse the contents of the array
-      int arrayStart = file.indexOf("\"cellarray\"");//The location of "cellArray"
+      int arrayStart = file.toLowerCase().indexOf("\"cellarray\"");//The location of "cellArray"
       int arrayEnd = file.indexOf("]]",arrayStart);//The end of the cell array
       if(arrayStart == -1) {//If no array was found
         //Exit
