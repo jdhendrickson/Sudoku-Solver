@@ -153,9 +153,9 @@ class Board {
                 out += getCell((x1 * getBoxSize()) + x2, y).getContent();
               } else {
                 //Check if the iterator is a note
-                if (currentNotes.contains(Helpers.iterToChar((char) ((row * 3) + j)))) {
+                if (currentNotes.contains(Helpers.iterToChar((char) ((row * getBoxSize()) + j)))) {
                   //Add the note to what will be printed
-                  out += Helpers.iterToChar((char) ((row * 3) + j));
+                  out += Helpers.iterToChar((char) ((row * getBoxSize()) + j));
                 } else {
                   //Add a spacer if the iterator is not a note
                   out += " ";
