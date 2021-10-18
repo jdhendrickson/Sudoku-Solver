@@ -153,9 +153,9 @@ class Board {
                 out += getCell((x1 * getBoxSize()) + x2, y).getContent();
               } else {
                 //Check if the iterator is a note
-                if (currentNotes.contains(Cell.iterToChar((char) ((row * 3) + j)))) {
+                if (currentNotes.contains(Helpers.iterToChar((char) ((row * 3) + j)))) {
                   //Add the note to what will be printed
-                  out += Cell.iterToChar((char) ((row * 3) + j));
+                  out += Helpers.iterToChar((char) ((row * 3) + j));
                 } else {
                   //Add a spacer if the iterator is not a note
                   out += " ";
@@ -202,32 +202,6 @@ class Board {
     out = out.substring(0,out.length() - 1);
     out += "\n\t]\n}";
     return out;
-  }
-  /**
-   * Saves the current board state as a json file.
-   * Note that this saves as a .json file, not as a text file in json format.
-   * @param fileName The name of the file. Do not include the file extension.
-   */
-  public void saveAsJson(String fileName) {
-    try {
-      //Ensure the file is created
-      File output = new File(fileName + ".json");
-      if (output.createNewFile()) {
-        System.out.println("File created: " + output.getName());
-      } else {
-        System.out.println(output.getName() +" already exists.");
-      }
-      //Create a filewriter
-      FileWriter myWriter = new FileWriter(output.getName());
-      //Write the json
-      myWriter.write(sendToJson());
-      //Close the file
-      myWriter.close();
-      System.out.println("Json file written to.");
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
   }
   /**
   * A function to grab information from the json file. Defaults to input.json as filename.

@@ -43,25 +43,4 @@ public class Cell {
     public void printContent() {
         System.out.print(content);
     }
-
-    /**
-     * Converts an iterator to the character that is equivalent to it
-     * @param in The iterator to be converted
-     * @return The converted char
-     */
-    public static char iterToChar(char in) {
-        return (char) ('0' + in);
-    }
-
-    /**
-     * Converts an input string into what the equivalent char should be for sudoku
-     * @param in The string containing the number input. Must be smaller than a char.
-     * @return The char that the value should be to be put into the cell value
-     */
-    public static char strToChar(String in) {
-        //Convert the string input into a number within a char value's range
-        char temp = (char) Integer.parseInt(in);
-        //Use the iterToChar to convert the char number into the char value
-        return iterToChar(temp);
-    }
 }
