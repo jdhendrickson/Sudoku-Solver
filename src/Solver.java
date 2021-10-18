@@ -98,7 +98,7 @@ public class Solver {
                 //Remove all current notes
                 board.getCell(x,y).getNotes().clear();
                 //For each value that can be in the sudoku
-                for (char k = 0; k < board.getSize(); k++) {
+                for (char k = 0; k <= board.getSize(); k++) {
                     //If the value is not yet solved
                     if (!board.getCell(x,y).isSolved()) {
                         //If it is a valid location for that character
