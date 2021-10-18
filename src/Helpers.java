@@ -61,6 +61,7 @@ public class Helpers {
      * Used as a bad replacement for debugging
      */
     public static void waitForInput() {
+        System.out.println("Waiting for input");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }

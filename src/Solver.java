@@ -78,6 +78,7 @@ public class Solver {
                         board.getCell(x, y).setContent(board.getCell(x, y).getNotes().get(0));
                         //Reset and look for next solved
                         i = 0;
+                        x = board.getSize()-1;
                     }
                 }
             }
