@@ -36,7 +36,13 @@ public class Helpers {
      * @return The converted char
      */
     public static char iterToChar(char in) {
-        return (char) ('0' + in);
+        if (in < 10) {//0-9 numbers
+            return (char) ('0' + in);
+        } else if (in < 36) {//A-Z
+            return (char) ('A' - 10 + in);
+        }
+        //Other values not found, return null
+        return 0;
     }
     /**
      * Converts an input string into what the equivalent char should be for sudoku
