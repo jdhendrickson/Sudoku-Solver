@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Helpers {
     /**
@@ -54,5 +55,13 @@ public class Helpers {
         char temp = (char) Integer.parseInt(in);
         //Use the iterToChar to convert the char number into the char value
         return iterToChar(temp);
+    }
+    /**
+     * Makes the code wait for a user input before continuing.
+     * Used as a bad replacement for debugging
+     */
+    public static void waitForInput() {
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 }
