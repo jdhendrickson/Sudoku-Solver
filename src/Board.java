@@ -83,6 +83,23 @@ class Board {
   public Cell getCell(int x, int y) {
     return cellArray[y][x];
   }
+  /**
+   * Gets the specified box
+   * @param x A x location in the box
+   * @param y A y location in the box
+   * @return The specified box
+   */
+  public Cell[][] getBox(int x, int y) {
+    int xStart = getBoxStart(x);
+    int yStart = getBoxStart(y);
+    Cell[][] out = new Cell[getBoxSize()][getBoxSize()];
+    for (int i = 0; i < getBoxSize(); i++) {
+      for (int j = 0; j < getBoxSize(); j++) {
+        out[xStart + i][yStart + j] = cellArray[xStart + i][yStart + j];
+      }
+    }
+    return out;
+  }
 
   /**
    * Gets the start location of the box
