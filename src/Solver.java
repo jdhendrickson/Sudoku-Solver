@@ -155,6 +155,17 @@ public class Solver {
                             isXAlright = false;
                         }
                     }
+                    //If it is found in the corresponding column and not in any other column
+                    if (isYAlright && board.getCell(boxX + j, boxY + k).getNotes().contains(Helpers.iterToChar(i))) {
+                        //That row is the only one that contains the value
+                        if (whichColumn < 0 || whichColumn == j) {
+                            //There has not been a column already found, save this row
+                            whichColumn = j;
+                        } else {
+                            //There has already been a column found with this value, not a line
+                            isYAlright = false;
+                        }
+                    }
                 }
             }
             //Display for testing, remove for deployment
@@ -166,7 +177,7 @@ public class Solver {
                 System.out.print(" Y row: ");
                 System.out.println(whichColumn);
             } else {
-                System.out.println("No lines");
+                System.out.println(" No lines");
             }
         }
         return board;
