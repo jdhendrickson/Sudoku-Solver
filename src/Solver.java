@@ -114,6 +114,21 @@ public class Solver {
     }
 
     /**
+     * Populates notes and then uses an algorithm to check for issues with the notes
+     * @return A board populated with notes
+     */
+    public Board populateNotesImproved() {
+        populateNotes();
+        //Check with boxes in x plane
+        for (int boxX = 0; boxX < board.getSize(); boxX = boxX + board.getBoxSize()) {
+            //Check with boxes in y plane
+            for (int boxY = 0; boxY < board.getSize(); boxY = boxY + board.getBoxSize()) {
+                //Check each box for
+            }
+        }
+        return board;
+    }
+    /**
      * Checks if the specified char can be placed in the specified location
      * @param in The char to be placed
      * @param x The x-location
