@@ -130,26 +130,34 @@ public class Solver {
 
             }
         }//*/
-        int boxX = 0, boxY = 0;
+        int boxX = 1, boxY = 0;
         //Set up the boolean tests
         ArrayList<Boolean> xPlane = new ArrayList<Boolean>();
+        ArrayList<Boolean> yPlane = new ArrayList<Boolean>();
         for (int i = 0; i < board.getBoxSize(); i++) {
             xPlane.add(false);
+            yPlane.add(false);
         }
         //For each possible item
         for (char i = 0; i < board.getSize(); i++) {
             //Check each row
             for (int j = 0; j < board.getBoxSize(); j++) {
                 //If it is found in the corresponding row and not in any other row
-                if (board.getCell(boxX, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
+                if (board.getCell(boxX + j, boxY).getNotes().contains(Helpers.iterToChar(i))) {
                     //That row is the only one that contains the value
                     xPlane.set(j, true);
                 }
+                if (board.getCell(boxX, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
+                    //That column is the only one that contains the value
+                    yPlane.set(j, true);
+                }
             }
             //Display for testing, remove for deployment
+            System.out.print(Helpers.iterToChar(i));
             for (int j = 0; j < board.getBoxSize(); j++) {
-                System.out.println(Helpers.iterToChar(i) + " " + xPlane.indexOf(j));
+                 System.out.print(" " + xPlane.indexOf(j));
             }
+            System.out.println("");
         }
         return board;
     }
