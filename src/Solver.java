@@ -132,32 +132,40 @@ public class Solver {
         }//*/
         int boxX = 2, boxY = 0;
         //Set up the boolean tests
-        ArrayList<Boolean> xPlane = new ArrayList<Boolean>();
-        ArrayList<Boolean> yPlane = new ArrayList<Boolean>();
+        boolean isXAlright, isYAlright;
+        int whichRow, whichColumn;
         //For each possible item
         for (char i = 1; i <= board.getSize(); i++) {
-            //Remove all items
-            xPlane.clear();
-            yPlane.clear();
-            //Set up booleans for this value
-            for (int j = 0; j < board.getBoxSize(); j++) {
-                xPlane.add(false);
-                yPlane.add(false);
-            }
+            //Set the booleans and row counters
+            isXAlright = true;
+            isYAlright = true;
+            whichRow = -1;
+            whichColumn = -1;
             //Check each row
             for (int j = 0; j < board.getBoxSize(); j++) {
                 //If it is found in the corresponding row and not in any other row
-                if (board.getCell(boxX, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
+                if (isXAlright && board.getCell(boxX, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
                     //That row is the only one that contains the value
-                    xPlane.set(j, true);
+                    if(whichRow < 0) {
+                        //There has not been a row already found, save this row
+                        whichRow = j;
+                    } else {
+                        //There has already been a row found with this value, not a line
+                        isXAlright = false;
+                    }
                 }
             }
             //Display for testing, remove for deployment
             System.out.print(Helpers.iterToChar(i));
-            for (int j = 0; j < board.getBoxSize(); j++) {
-                 System.out.print(" " + xPlane.get(j));
+            if (isXAlright) {
+                System.out.print(" X row: ");
+                System.out.println(whichRow);
+            } else if (isYAlright) {
+                System.out.print(" Y row: ");
+                System.out.println(whichColumn);
+            } else {
+                System.out.println("No lines");
             }
-            System.out.println("");
         }
         return board;
     }
