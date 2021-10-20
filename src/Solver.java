@@ -134,16 +134,20 @@ public class Solver {
         //Set up the boolean tests
         ArrayList<Boolean> xPlane = new ArrayList<Boolean>();
         ArrayList<Boolean> yPlane = new ArrayList<Boolean>();
-        for (int i = 0; i < board.getBoxSize(); i++) {
-            xPlane.add(false);
-            yPlane.add(false);
-        }
         //For each possible item
         for (char i = 1; i <= board.getSize(); i++) {
+            //Remove all items
+            xPlane.clear();
+            yPlane.clear();
+            //Set up booleans for this value
+            for (int j = 0; j < board.getBoxSize(); j++) {
+                xPlane.add(false);
+                yPlane.add(false);
+            }
             //Check each row
             for (int j = 0; j < board.getBoxSize(); j++) {
                 //If it is found in the corresponding row and not in any other row
-                if (board.getCell(boxX + j, boxY).getNotes().contains(Helpers.iterToChar(i))) {
+                if (board.getCell(boxX, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
                     //That row is the only one that contains the value
                     xPlane.set(j, true);
                 }
