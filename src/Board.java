@@ -22,7 +22,20 @@ class Board {
     }
   }
   /**
+   * Creates a blank board of the specified size
+   */
+  public Board(int in) {
+    this.size = in;
+    cellArray = new Cell[size][size];
+    for(int i = 0; i < size; i++) {
+      for(int j = 0; j < size; j++) {
+        cellArray[i][j] = new Cell(false);
+      }
+    }
+  }
+  /**
    * Create a new game board from a specified json file
+   * @param in The name of the json. Do not include the .json.
    */
   public Board(String in) {
     importFromJson(in);
