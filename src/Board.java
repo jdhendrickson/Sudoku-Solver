@@ -83,6 +83,14 @@ class Board {
   public Cell getCell(int x, int y) {
     return cellArray[y][x];
   }
+
+  /**
+   * Gets the start location of the box
+   * @param x Any location in a line
+   * @return The location where the box starts on that line
+   */
+  public int getBoxStart(int x) { return (x / getBoxSize()) * getBoxSize(); }
+
   /**
   * Prints the current board.
   * Will state current filled cells on the board.

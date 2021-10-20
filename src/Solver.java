@@ -208,8 +208,8 @@ public class Solver {
             }
         }
         //Check box the cell is in
-        int boxX = (x / board.getBoxSize()) * board.getBoxSize();
-        int boxY = (y / board.getBoxSize()) * board.getBoxSize();
+        int boxX = board.getBoxStart(x);
+        int boxY = board.getBoxStart(y);
         if (verbose) {
             System.out.println("Checking from " + boxX + "," + boxY + " to "
                     + (boxX + board.getBoxSize() - 1) + "," + (boxY + board.getBoxSize() - 1));
