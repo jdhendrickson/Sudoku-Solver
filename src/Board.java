@@ -97,18 +97,20 @@ class Board {
     return cellArray[y][x];
   }
   /**
-   * Gets the specified box
+   * Gets the specified box as a small board
    * @param x A x location in the box
    * @param y A y location in the box
    * @return The specified box
    */
-  public Cell[][] getBox(int x, int y) {
+  public Board getBox(int x, int y) {
+    //Get the locations of the box start
     int xStart = getBoxStart(x);
     int yStart = getBoxStart(y);
-    Cell[][] out = new Cell[getBoxSize()][getBoxSize()];
+    Board out = new Board(getBoxSize());
+    //Transfer all the items over
     for (int i = 0; i < getBoxSize(); i++) {
       for (int j = 0; j < getBoxSize(); j++) {
-        out[xStart + i][yStart + j] = cellArray[xStart + i][yStart + j];
+        out.getCell(i,j).setContent(this.getCell(xStart + i,yStart + j).getContent());
       }
     }
     return out;
