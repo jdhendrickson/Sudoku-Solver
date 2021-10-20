@@ -120,6 +120,7 @@ public class Solver {
      * @return A board populated with notes
      */
     public Board populateNotesImproved() {
+        int boxY = 0;
         //populateNotes();
         //Set up the boolean tests
         boolean isXAlright, isYAlright;
@@ -128,15 +129,17 @@ public class Solver {
         for (char i = 1; i <= board.getSize(); i++) {
             //Check with boxes in x plane
             for (int boxX = 0; boxX < board.getSize(); boxX = boxX + board.getBoxSize()) {
+                /*
                 //Check with boxes in y plane
                 for (int boxY = 0; boxY < board.getSize(); boxY = boxY + board.getBoxSize()) {
+                 */
                     //Check each box for lines of notes
                     //Set the booleans and row counters
                     isXAlright = true;
                     isYAlright = true;
                     whichRow = -1;
                     whichColumn = -1;
-                    //Check each row
+                    //Check for lines
                     for (int j = 0; j < board.getBoxSize(); j++) {
                         for (int k = 0; k < board.getBoxSize(); k++) {
                             //If it is found in the corresponding row and not in any other row
@@ -148,17 +151,6 @@ public class Solver {
                                 } else {
                                     //There has already been a row found with this value, not a line
                                     isXAlright = false;
-                                }
-                            }
-                            //If it is found in the corresponding column and not in any other column
-                            if (isYAlright && board.getCell(boxX + j, boxY + k).getNotes().contains(Helpers.iterToChar(i))) {
-                                //That row is the only one that contains the value
-                                if (whichColumn < 0 || whichColumn == j) {
-                                    //There has not been a column already found, save this row
-                                    whichColumn = j;
-                                } else {
-                                    //There has already been a column found with this value, not a line
-                                    isYAlright = false;
                                 }
                             }
                         }
@@ -186,7 +178,6 @@ public class Solver {
                     }
                 }
             }
-        }
         return board;
     }
     /**
