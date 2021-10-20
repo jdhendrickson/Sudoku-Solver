@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Solver {
      Board board;
     private boolean solved;
@@ -119,11 +121,34 @@ public class Solver {
      */
     public Board populateNotesImproved() {
         populateNotes();
+        /*
         //Check with boxes in x plane
         for (int boxX = 0; boxX < board.getSize(); boxX = boxX + board.getBoxSize()) {
             //Check with boxes in y plane
             for (int boxY = 0; boxY < board.getSize(); boxY = boxY + board.getBoxSize()) {
-                //Check each box for
+                //Check each box for lines of notes
+
+            }
+        }//*/
+        int boxX = 0, boxY = 0;
+        //Set up the boolean tests
+        ArrayList<Boolean> xPlane = new ArrayList<Boolean>();
+        for (int i = 0; i < board.getBoxSize(); i++) {
+            xPlane.add(false);
+        }
+        //For each possible item
+        for (char i = 0; i < board.getSize(); i++) {
+            //Check each row
+            for (int j = 0; j < board.getBoxSize(); j++) {
+                //If it is found in the corresponding row and not in any other row
+                if (board.getCell(boxX, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
+                    //That row is the only one that contains the value
+                    xPlane.set(j, true);
+                }
+            }
+            //Display for testing, remove for deployment
+            for (int j = 0; j < board.getBoxSize(); j++) {
+                System.out.println(Helpers.iterToChar(i) + " " + xPlane.indexOf(j));
             }
         }
         return board;
