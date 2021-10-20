@@ -168,16 +168,26 @@ public class Solver {
                     }
                 }
             }
-            //Display for testing, remove for deployment
-            System.out.print(Helpers.iterToChar(i));
-            if (isXAlright) {
-                System.out.print(" X row: ");
-                System.out.println(whichRow);
-            } else if (isYAlright) {
-                System.out.print(" Y row: ");
-                System.out.println(whichColumn);
+            if (isXAlright && whichRow >= 0) {
+                //Remove the values from the x row
+                for(int j = 0; j < board.getSize(); j++) {
+                    //Limit it to outside the box the values were found in
+                    if (j < boxX || j >= boxX + board.getBoxSize()) {
+                        //Remove unwanted notes
+                        board.getCell(j, boxY + whichRow).setContent(Helpers.iterToChar(i));
+                    }
+                }
+            } else if (isYAlright && whichColumn >= 0) {
+                //Remove the values from the y row
+                for(int j = 0; j < board.getSize(); j++) {
+                    //Limit it to outside the box the values were found in
+                    if (j < boxY || j >= boxY + board.getBoxSize()) {
+                        //Remove unwanted notes
+                        board.getCell(boxX + whichColumn, j).setContent(Helpers.iterToChar(i));
+                    }
+                }
             } else {
-                System.out.println(" No lines");
+                //No lines, do nothing
             }
         }
         return board;
