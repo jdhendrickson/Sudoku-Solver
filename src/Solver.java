@@ -151,7 +151,7 @@ public class Solver {
             //Display for testing, remove for deployment
             System.out.print(Helpers.iterToChar(i));
             for (int j = 0; j < board.getBoxSize(); j++) {
-                 System.out.print(" " + xPlane.indexOf(j));
+                 System.out.print(" " + xPlane.get(j));
             }
             System.out.println("");
         }
