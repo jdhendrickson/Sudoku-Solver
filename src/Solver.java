@@ -130,7 +130,7 @@ public class Solver {
 
             }
         }//*/
-        int boxX = 2, boxY = 0;
+        int boxX = 0, boxY = 0;
         //Set up the boolean tests
         boolean isXAlright, isYAlright;
         int whichRow, whichColumn;
@@ -143,15 +143,17 @@ public class Solver {
             whichColumn = -1;
             //Check each row
             for (int j = 0; j < board.getBoxSize(); j++) {
-                //If it is found in the corresponding row and not in any other row
-                if (isXAlright && board.getCell(boxX, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
-                    //That row is the only one that contains the value
-                    if(whichRow < 0) {
-                        //There has not been a row already found, save this row
-                        whichRow = j;
-                    } else {
-                        //There has already been a row found with this value, not a line
-                        isXAlright = false;
+                for (int k = 0; k < board.getBoxSize(); k++) {
+                    //If it is found in the corresponding row and not in any other row
+                    if (isXAlright && board.getCell(boxX + k, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
+                        //That row is the only one that contains the value
+                        if (whichRow < 0 || whichRow == j) {
+                            //There has not been a row already found, save this row
+                            whichRow = j;
+                        } else {
+                            //There has already been a row found with this value, not a line
+                            isXAlright = false;
+                        }
                     }
                 }
             }
