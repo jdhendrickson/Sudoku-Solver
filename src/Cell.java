@@ -25,6 +25,9 @@ public class Cell {
     public void addNote(char c) {
         notes.add(Character.valueOf(c));
     }
+    public void addNotes(ArrayList<Character> c) {
+        c.forEach((i) -> notes.add(i));
+    }
     public void removeNote(char c) {
         notes.remove(Character.valueOf(c));
     }
