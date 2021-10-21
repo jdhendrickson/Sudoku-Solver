@@ -119,12 +119,40 @@ class Board {
     //Transfer all the items over
     for (int i = 0; i < getBoxSize(); i++) {
       for (int j = 0; j < getBoxSize(); j++) {
+        //Transfer from the board to the box
         out.getCell(i,j).setContent(this.getCell(xStart + i,yStart + j).getContent());
       }
     }
     return out;
   }
 
+  /**
+   * Replaces the specified box on a board with a different, provided one.
+   * @param x A x location in the box
+   * @param y A y location in the box
+   * @param box The board we are replacing the specified box with
+   * @param usingBoxCoords Decides whether to use box coordinates or not.
+   *                       True means that each box has it's own index
+   *                       False means that we are deriving box location based off which box contains the provided cell
+   */
+  public void setBox(int x, int y, Board box, Boolean usingBoxCoords) {
+    int xStart, yStart;
+    //Get the locations of the box start
+    if (usingBoxCoords) {
+      xStart = x;
+      yStart = y;
+    } else {
+      xStart = getBoxStart(x);
+      yStart = getBoxStart(y);
+    }
+    //Transfer all the items over
+    for (int i = 0; i < getBoxSize(); i++) {
+      for (int j = 0; j < getBoxSize(); j++) {
+        //Transfer from the box to the board
+        this.getCell(i,j).setContent(box.getCell(xStart + i,yStart + j).getContent());
+      }
+    }
+  }
   /**
    * Gets the start location of the box
    * @param x Any location in a line
