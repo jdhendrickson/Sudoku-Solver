@@ -109,8 +109,8 @@ class Board {
     int xStart, yStart;
     //Get the locations of the box start
     if (usingBoxCoords) {
-      xStart = x;
-      yStart = y;
+      xStart = x * getBoxSize();
+      yStart = y * getBoxSize();
     } else {
       xStart = getBoxStart(x);
       yStart = getBoxStart(y);
@@ -139,8 +139,8 @@ class Board {
     int xStart, yStart;
     //Get the locations of the box start
     if (usingBoxCoords) {
-      xStart = x;
-      yStart = y;
+      xStart = x * getBoxSize();
+      yStart = y * getBoxSize();
     } else {
       xStart = getBoxStart(x);
       yStart = getBoxStart(y);
@@ -149,7 +149,7 @@ class Board {
     for (int i = 0; i < getBoxSize(); i++) {
       for (int j = 0; j < getBoxSize(); j++) {
         //Transfer from the box to the board
-        this.getCell(i,j).setContent(box.getCell(xStart + i,yStart + j).getContent());
+        this.getCell(xStart + i,yStart + j).setContent(box.getCell(i,j).getContent());
       }
     }
   }
