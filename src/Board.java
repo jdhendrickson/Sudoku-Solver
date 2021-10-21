@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 class Board {
   //The base size of the board. Traditional sudoku boards will have a size of 9
-  private static int size;
+  private int size;
   //The array the board is being held in
-  private static Cell[][] cellArray;
+  private Cell[][] cellArray;
 
   /**
   * Defaults to a basic blank game board that is 3x3
