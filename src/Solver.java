@@ -120,64 +120,68 @@ public class Solver {
      * @return A board populated with notes
      */
     public Board populateNotesImproved() {
-        int boxY = 0;
-        //populateNotes();
+        Board box;
+        int xBox = 1;
+        int yBox = 0;
         //Set up the boolean tests
-        boolean isXAlright, isYAlright;
         int whichRow, whichColumn;
+        boolean isOnlyValue;
+        box = board.getBox(xBox,yBox, true);
         //For each possible item
-        for (char i = 1; i <= board.getSize(); i++) {
-            //Check with boxes in x plane
-            for (int boxX = 0; boxX < board.getSize(); boxX = boxX + board.getBoxSize()) {
-                /*
-                //Check with boxes in y plane
-                for (int boxY = 0; boxY < board.getSize(); boxY = boxY + board.getBoxSize()) {
-                 */
-                    //Check each box for lines of notes
-                    //Set the booleans and row counters
-                    isXAlright = true;
-                    isYAlright = true;
-                    whichRow = -1;
-                    whichColumn = -1;
-                    //Check for lines
-                    for (int j = 0; j < board.getBoxSize(); j++) {
-                        for (int k = 0; k < board.getBoxSize(); k++) {
-                            //If it is found in the corresponding row and not in any other row
-                            if (isXAlright && board.getCell(boxX + k, boxY + j).getNotes().contains(Helpers.iterToChar(i))) {
-                                //That row is the only one that contains the value
-                                if (whichRow < 0 || whichRow == j) {
-                                    //There has not been a row already found, save this row
-                                    whichRow = j;
-                                } else {
-                                    //There has already been a row found with this value, not a line
-                                    isXAlright = false;
-                                }
-                            }
+        char i = 1;
+        //for (char i = 1; i <= board.getSize(); i++) {
+            //Check each box for lines of notes
+            whichRow = -1;
+            whichColumn = -1;
+            isOnlyValue = true;
+            //Check for lines
+            for (int j = 0; j < box.getSize(); j++) {
+                for (int k = 0; k < box.getSize(); k++) {
+                    //If it is found in the corresponding row and not in any other row
+                    if (box.getCell(k, j).getNotes().contains(Helpers.iterToChar(i))) {
+                        //If the value has been found before
+                        if (whichRow != -1) {
+                            isOnlyValue = false;
+                        }
+                        //If a row containing the value has not been found before
+                        if (whichRow == -1) {
+                            //There has not been a row already found, save this row
+                            whichRow = j;
+                        } else if (whichRow != j) {
+                            //There has already been a row found with this value, no line in this box
+                            whichRow = -2;
                         }
                     }
-                    if (isXAlright && whichRow >= 0) {
-                        //Remove the values from the x row
-                        for (int j = 0; j < board.getSize(); j++) {
-                            //Limit it to outside the box the values were found in
-                            if (j < boxX || j >= boxX + board.getBoxSize()) {
-                                //Remove unwanted notes
-                                board.getCell(j, boxY + whichRow).setContent(Helpers.iterToChar(i));
-                            }
+                    //If it is found in the corresponding column and not in any other column
+                    if (box.getCell(j, k).getNotes().contains(Helpers.iterToChar(i))) {
+                        //If a column containing the value has not been found before
+                        if (whichColumn == -1) {
+                            //There has not been a column already found, save this column
+                            whichColumn = j;
+                        } else if (whichColumn != j) {
+                            //There has already been a column found with this value, no line in this box
+                            whichColumn = -2;
                         }
-                    } else if (isYAlright && whichColumn >= 0) {
-                        //Remove the values from the y row
-                        for (int j = 0; j < board.getSize(); j++) {
-                            //Limit it to outside the box the values were found in
-                            if (j < boxY || j >= boxY + board.getBoxSize()) {
-                                //Remove unwanted notes
-                                board.getCell(boxX + whichColumn, j).setContent(Helpers.iterToChar(i));
-                            }
-                        }
-                    } else {
-                        //No lines, do nothing
                     }
                 }
             }
+            if (whichRow >= 0 && !isOnlyValue) {
+                //Remove the values from the x row
+                for (int j = 0; j < board.getSize(); j++) {
+                    //Remove unwanted notes
+                    board.getCell(j, yBox * board.getBoxSize() + whichRow).setContent(Helpers.iterToChar(i));
+                }
+            } else if (whichColumn >= 0 && !isOnlyValue) {
+                //Remove the values from the y row
+                for (int j = 0; j < board.getSize(); j++) {
+                    //Remove unwanted notes
+                    board.getCell(xBox * board.getBoxSize() + whichColumn,j).setContent(Helpers.iterToChar(i));
+                }
+            } else {
+                System.out.println("Nothing was found");
+            }
+            board.setBox(xBox,yBox,box,true);
+        //}
         return board;
     }
     /**

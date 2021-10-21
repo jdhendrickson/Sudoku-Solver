@@ -6,6 +6,6 @@ class Main {
        solver.board.getCell(2,0).addNote('1');
        solver.board.getCell(3,0).addNote('1');
        solver.populateNotesImproved();
-       solver.printBoard();
+       solver.printNotes();
    }
 }
