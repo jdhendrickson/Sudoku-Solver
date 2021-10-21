@@ -121,67 +121,69 @@ public class Solver {
      */
     public Board populateNotesImproved() {
         Board box;
-        int xBox = 1;
-        int yBox = 0;
         //Set up the boolean tests
         int whichRow, whichColumn;
         boolean isOnlyValue;
-        box = board.getBox(xBox,yBox, true);
-        //For each possible item
-        char i = 1;
-        //for (char i = 1; i <= board.getSize(); i++) {
-            //Check each box for lines of notes
-            whichRow = -1;
-            whichColumn = -1;
-            isOnlyValue = true;
-            //Check for lines
-            for (int j = 0; j < box.getSize(); j++) {
-                for (int k = 0; k < box.getSize(); k++) {
-                    //If it is found in the corresponding row and not in any other row
-                    if (box.getCell(k, j).getNotes().contains(Helpers.iterToChar(i))) {
-                        //If the value has been found before
-                        if (whichRow != -1) {
-                            isOnlyValue = false;
-                        }
-                        //If a row containing the value has not been found before
-                        if (whichRow == -1) {
-                            //There has not been a row already found, save this row
-                            whichRow = j;
-                        } else if (whichRow != j) {
-                            //There has already been a row found with this value, no line in this box
-                            whichRow = -2;
+        //Go through all the boxes
+        for (int xBox = 0; xBox < board.getBoxSize(); xBox++) {
+            for (int yBox = 0; yBox < board.getBoxSize(); yBox++) {
+                box = board.getBox(xBox, yBox, true);
+                //For each possible item
+                for (char i = 1; i <= board.getSize(); i++) {
+                    //Check each box for lines of notes
+                    whichRow = -1;
+                    whichColumn = -1;
+                    isOnlyValue = true;
+                    //Check for lines
+                    for (int j = 0; j < box.getSize(); j++) {
+                        for (int k = 0; k < box.getSize(); k++) {
+                            //If it is found in the corresponding row and not in any other row
+                            if (box.getCell(k, j).getNotes().contains(Helpers.iterToChar(i))) {
+                                //If the value has been found before
+                                if (whichRow != -1) {
+                                    isOnlyValue = false;
+                                }
+                                //If a row containing the value has not been found before
+                                if (whichRow == -1) {
+                                    //There has not been a row already found, save this row
+                                    whichRow = j;
+                                } else if (whichRow != j) {
+                                    //There has already been a row found with this value, no line in this box
+                                    whichRow = -2;
+                                }
+                            }
+                            //If it is found in the corresponding column and not in any other column
+                            if (box.getCell(j, k).getNotes().contains(Helpers.iterToChar(i))) {
+                                //If a column containing the value has not been found before
+                                if (whichColumn == -1) {
+                                    //There has not been a column already found, save this column
+                                    whichColumn = j;
+                                } else if (whichColumn != j) {
+                                    //There has already been a column found with this value, no line in this box
+                                    whichColumn = -2;
+                                }
+                            }
                         }
                     }
-                    //If it is found in the corresponding column and not in any other column
-                    if (box.getCell(j, k).getNotes().contains(Helpers.iterToChar(i))) {
-                        //If a column containing the value has not been found before
-                        if (whichColumn == -1) {
-                            //There has not been a column already found, save this column
-                            whichColumn = j;
-                        } else if (whichColumn != j) {
-                            //There has already been a column found with this value, no line in this box
-                            whichColumn = -2;
+                    if (whichRow >= 0 && !isOnlyValue) {
+                        //Remove the values from the x row
+                        for (int j = 0; j < board.getSize(); j++) {
+                            //Remove unwanted notes
+                            board.getCell(j, yBox * board.getBoxSize() + whichRow).setContent(Helpers.iterToChar(i));
                         }
+                    } else if (whichColumn >= 0 && !isOnlyValue) {
+                        //Remove the values from the y row
+                        for (int j = 0; j < board.getSize(); j++) {
+                            //Remove unwanted notes
+                            board.getCell(xBox * board.getBoxSize() + whichColumn, j).setContent(Helpers.iterToChar(i));
+                        }
+                    } else {
+                        //Nothing was found"
                     }
+                    board.setBox(xBox, yBox, box, true);
                 }
             }
-            if (whichRow >= 0 && !isOnlyValue) {
-                //Remove the values from the x row
-                for (int j = 0; j < board.getSize(); j++) {
-                    //Remove unwanted notes
-                    board.getCell(j, yBox * board.getBoxSize() + whichRow).setContent(Helpers.iterToChar(i));
-                }
-            } else if (whichColumn >= 0 && !isOnlyValue) {
-                //Remove the values from the y row
-                for (int j = 0; j < board.getSize(); j++) {
-                    //Remove unwanted notes
-                    board.getCell(xBox * board.getBoxSize() + whichColumn,j).setContent(Helpers.iterToChar(i));
-                }
-            } else {
-                System.out.println("Nothing was found");
-            }
-            board.setBox(xBox,yBox,box,true);
-        //}
+        }
         return board;
     }
     /**
