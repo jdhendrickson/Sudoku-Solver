@@ -121,6 +121,7 @@ class Board {
       for (int j = 0; j < getBoxSize(); j++) {
         //Transfer from the board to the box
         out.getCell(i,j).setContent(this.getCell(xStart + i,yStart + j).getContent());
+        out.getCell(i,j).addNotes(this.getCell(xStart + i,yStart + j).getNotes());
       }
     }
     return out;
@@ -150,6 +151,8 @@ class Board {
       for (int j = 0; j < getBoxSize(); j++) {
         //Transfer from the box to the board
         this.getCell(xStart + i,yStart + j).setContent(box.getCell(i,j).getContent());
+        this.getCell(xStart + i,yStart + j).getNotes().clear();
+        this.getCell(xStart + i,yStart + j).addNotes(box.getCell(i,j).getNotes());
       }
     }
   }
