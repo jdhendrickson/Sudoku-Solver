@@ -100,12 +100,21 @@ class Board {
    * Gets the specified box as a small board
    * @param x A x location in the box
    * @param y A y location in the box
+   * @param usingBoxCoords Decides whether to use box coordinates or not.
+   *                       True means that each box has it's own index
+   *                       False means that we are deriving box location based off which box contains the provided cell
    * @return The specified box
    */
-  public Board getBox(int x, int y) {
+  public Board getBox(int x, int y, Boolean usingBoxCoords) {
+    int xStart, yStart;
     //Get the locations of the box start
-    int xStart = getBoxStart(x);
-    int yStart = getBoxStart(y);
+    if (usingBoxCoords) {
+      xStart = x;
+      yStart = y;
+    } else {
+      xStart = getBoxStart(x);
+      yStart = getBoxStart(y);
+    }
     Board out = new Board(getBoxSize());
     //Transfer all the items over
     for (int i = 0; i < getBoxSize(); i++) {
