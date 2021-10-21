@@ -70,7 +70,7 @@ public class Solver {
         while (i < 1) {
             i++;
             //Populate all the notes
-            populateNotes();
+            populateNotesImproved();
             //Find any cells that only have a single note, and then solve them
             for (int x = 0; x < board.getSize(); x++) {
                 for (int y = 0; y < board.getSize(); y++) {
@@ -120,6 +120,7 @@ public class Solver {
      * @return A board populated with notes
      */
     public Board populateNotesImproved() {
+        populateNotes();
         Board box;
         //Set up the boolean tests
         int whichRow, whichColumn;
@@ -169,13 +170,13 @@ public class Solver {
                         //Remove the values from the x row
                         for (int j = 0; j < board.getSize(); j++) {
                             //Remove unwanted notes
-                            board.getCell(j, yBox * board.getBoxSize() + whichRow).setContent(Helpers.iterToChar(i));
+                            board.getCell(j, yBox * board.getBoxSize() + whichRow).removeNote(Helpers.iterToChar(i));
                         }
                     } else if (whichColumn >= 0 && !isOnlyValue) {
                         //Remove the values from the y row
                         for (int j = 0; j < board.getSize(); j++) {
                             //Remove unwanted notes
-                            board.getCell(xBox * board.getBoxSize() + whichColumn, j).setContent(Helpers.iterToChar(i));
+                            board.getCell(xBox * board.getBoxSize() + whichColumn, j).removeNote(Helpers.iterToChar(i));
                         }
                     } else {
                         //Nothing was found"
