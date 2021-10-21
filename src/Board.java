@@ -97,7 +97,15 @@ class Board {
     return cellArray[y][x];
   }
   /**
-   * Gets the specified box as a small board
+   * Gets the specified box as a small board. Assumes you are using box coordinates.
+   * @param x A x location in the box
+   * @param y A y location in the box
+   */
+  public Board getBox(int x, int y) {
+    return getBox(x,y,true);
+  }
+  /**
+   * Gets the specified box as a small board.
    * @param x A x location in the box
    * @param y A y location in the box
    * @param usingBoxCoords Decides whether to use box coordinates or not.
@@ -126,7 +134,15 @@ class Board {
     }
     return out;
   }
-
+  /**
+   * Replaces the specified box on a board with a different, provided one. Assumes you are using box coordinates
+   * @param x A x location in the box
+   * @param y A y location in the box
+   * @param box The board we are replacing the specified box with
+   */
+  public void setBox(int x, int y, Board box) {
+    setBox(x,y,box,true);
+  }
   /**
    * Replaces the specified box on a board with a different, provided one.
    * @param x A x location in the box
@@ -162,49 +178,55 @@ class Board {
    * @return The location where the box starts on that line
    */
   public int getBoxStart(int x) { return (x / getBoxSize()) * getBoxSize(); }
-
   /**
-  * Prints the current board formatted to look nice and readable.
-  * Will state current filled cells on the board.
-  */
+   * Prints the current board formatted to look nice and readable.
+   * Will state current filled cells on the board.
+   */
   public void printBoard() {
-    String printLine = "-";
-    for(int i = 0; i < size + getBoxSize(); i++) {
-      printLine += "-";
-    }
-    printLine += "\n";
-    String out = printLine;
-    //Go through every box on the board
-    for (int y1 = 0; y1 < getBoxSize(); y1++) {
-      //Go through every cell in the box
-      for (int y2 = 0; y2 < getBoxSize(); y2++) {
-        out += "|";
-        //Go through every box on the board
-        for (int x1 = 0; x1 < getBoxSize(); x1++) {
-          //Go through every cell in the box
-          for (int x2 = 0; x2 < getBoxSize(); x2++) {
-            out += getCell((x1 * getBoxSize()) + x2, (y1 * getBoxSize()) + y2).getContent();
-          }
-          out += "|";
+    printBoard('n');
+  }
+  /**
+   * Prints the current board with the specified formatting
+   * @param format Which format you wish to print the board with.
+   *               'n' means no formatting
+   *               's' means standard formatting
+   */
+  public void printBoard(char format) {
+    String out = "";
+    if (format == 'n') {
+      for (int y = 0; y < size; y++) {
+        for (int x = 0; x < size; x++) {
+          out += getCell(x,y).getContent();
         }
-        out += "\n";
+        out += '\n';
       }
-      out += printLine;
+    } else if (format == 's') {
+      String printLine = "-";
+      for (int i = 0; i < size + getBoxSize(); i++) {
+        printLine += "-";
+      }
+      printLine += "\n";
+      out = printLine;
+      //Go through every box on the board
+      for (int y1 = 0; y1 < getBoxSize(); y1++) {
+        //Go through every cell in the box
+        for (int y2 = 0; y2 < getBoxSize(); y2++) {
+          out += "|";
+          //Go through every box on the board
+          for (int x1 = 0; x1 < getBoxSize(); x1++) {
+            //Go through every cell in the box
+            for (int x2 = 0; x2 < getBoxSize(); x2++) {
+              out += getCell((x1 * getBoxSize()) + x2, (y1 * getBoxSize()) + y2).getContent();
+            }
+            out += "|";
+          }
+          out += "\n";
+        }
+        out += printLine;
+      }
     }
     System.out.println(out);
   }
-  /**
-   * Prints the notes of the board with no formatting
-   */
-  public void printBoardNoFormat() {
-    for (int y = 0; y < size; y++) {
-      for (int x = 0; x < size; x++) {
-        System.out.print(getCell(x,y).getContent());
-      }
-      System.out.println();
-    }
-  }
-
   /**
    * Prints out all the notes in the board
    */
