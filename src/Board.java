@@ -124,7 +124,7 @@ class Board {
   public int getBoxStart(int x) { return (x / getBoxSize()) * getBoxSize(); }
 
   /**
-  * Prints the current board.
+  * Prints the current board formatted to look nice and readable.
   * Will state current filled cells on the board.
   */
   public void printBoard() {
@@ -153,6 +153,18 @@ class Board {
     }
     System.out.println(out);
   }
+  /**
+   * Prints the notes of the board with no formatting
+   */
+  public void printBoardNoFormat() {
+    for (int y = 0; y < size; y++) {
+      for (int x = 0; x < size; x++) {
+        System.out.print(getCell(x,y).getContent());
+      }
+      System.out.println();
+    }
+  }
+
   /**
    * Prints out all the notes in the board
    */
