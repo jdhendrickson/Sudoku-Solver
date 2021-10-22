@@ -8,9 +8,10 @@ public class Solver {
      */
     public Solver() {
         board = new Board("input.json");
+        solved = false;
     }
-    public Solver(String in) {
-        board = new Board(in);
+    public Solver(Board in) {
+        board = in;
         solved = false;
     }
 
