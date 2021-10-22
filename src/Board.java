@@ -302,7 +302,7 @@ class Board {
           for (int x2 = 0; x2 < getSize(); x2++) {
             //Check all the numbers that will be on the current row
             for (char j = 1; j <= getSize(); j++) {
-              out += nextNote(x2, y, (char) (row + j));
+              out += nextNote(x2, y, (char) ((row * getSize()) + j));
             }
             out += "|";
           }
