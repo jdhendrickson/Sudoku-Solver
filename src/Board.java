@@ -183,7 +183,7 @@ class Board {
    * Will state current filled cells on the board.
    */
   public void printBoard() {
-    printBoard('n');
+    printBoard('s');
   }
   /**
    * Prints the current board with the specified formatting
