@@ -248,6 +248,15 @@ public class Solver {
     public void printNotes() {
         board.printNotes();
     }
+
+    /**
+     * Prints the notes in the specified box
+     * @param x The x-coord of the box
+     * @param y The y-coord of the box
+     */
+    public void printNotesBox(int x, int y) {
+        board.getBox(x,y).printNotesBox();
+    }
     /**
      * Returns the current board state in json format
      * @return A string containing the current board state in json format
