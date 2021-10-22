@@ -70,7 +70,7 @@ public class Solver {
         while (i < 1) {
             i++;
             //Populate all the notes
-            populateNotesImproved();
+            populateNotes();
             //Find any cells that only have a single note, and then solve them
             for (int x = 0; x < board.getSize(); x++) {
                 for (int y = 0; y < board.getSize(); y++) {
@@ -120,7 +120,7 @@ public class Solver {
      * @return A board populated with notes
      */
     public Board populateNotesImproved() {
-        populateNotes();
+        //populateNotes();
         Board box;
         //Set up the boolean tests
         int whichRow, whichColumn;

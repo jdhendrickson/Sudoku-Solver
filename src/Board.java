@@ -435,7 +435,6 @@ class Board {
 
     }
   }
-
   /**
    * Compare an iterator to a character
    * @param iterator The iterator to be compared. Must be smaller than board size.
