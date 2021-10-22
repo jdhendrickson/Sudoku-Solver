@@ -248,8 +248,6 @@ class Board {
 
     printLines += "\n";
     out += printLines;
-    //Create a single row
-    ArrayList<Character> currentNotes;
     //For each y position
     for (int y = 0; y < size; y++) {
       //For each of the rows the notes are displayed on
@@ -259,10 +257,9 @@ class Board {
           out += "|";
           //Go through all the cells in each box
           for (int x2 = 0; x2 < getBoxSize(); x2++) {
-            currentNotes = getCell((x1 * getBoxSize()) + x2, y).getNotes();
             //Check all the numbers that will be on the current row
             for (char j = 1; j <= getBoxSize(); j++) {
-              out += nextNote((x1 * getBoxSize()) + x2,y,(char) ((row * getBoxSize()) + j));
+              out += nextNote((x1 * getBoxSize()) + x2, y, (char) ((row * getBoxSize()) + j));
             }
             out += "|";
           }
