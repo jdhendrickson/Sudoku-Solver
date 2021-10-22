@@ -289,6 +289,63 @@ class Board {
     System.out.println(out);
   }
   /**
+   * Prints out all notes assuming this board is a box
+   */
+  public void printNotesBox() {
+    String out = "";
+    //Create the horizontal border between cells
+    String printLines = "";
+    printLines += "+";
+    //Create a border for a single box
+    for (int j = 0; j < getSize(); j++) {
+      //Create border for a single cell
+      for (int k = 0; k < getSize(); k++) {
+        printLines += "-";
+      }
+      printLines += "+";
+    }
+    printLines += "\n";
+
+    out += printLines;
+    //Create a single row
+    //For each y position
+    for (int y = 0; y < size; y++) {
+      //For each of the cells in the row
+      for (int x = 0; x < size; x++) {
+        out += '|';
+        //For each of the notes in the cell
+        for (int i = 0; i < size; i++) {
+          //Check all the numbers that will be on the current row
+          for (char j = 1; j <= getSize(); j++) {
+            out += nextNote(x,y,j);
+          }
+        }
+      }
+      out += "|\n";
+      out += printLines;
+    }
+    System.out.println(out);
+  }
+  /**
+   * Helper function for printing notes
+   */
+  private char nextNote(int x, int y, char iter) {
+    //Assume the output is a space
+    ArrayList<Character> currentNotes = getCell(x, y).getNotes();
+    char out = ' ';
+    //Check if the cell is solved
+    if (getCell(x, y).isSolved()) {
+      out += getCell(x, y).getContent();
+    } else {
+      //Check if the iterator is a note
+      if (currentNotes.contains(Helpers.iterToChar((char) (x + iter)))) {
+        //Add the note to what will be printed
+        out += Helpers.iterToChar((char) (x + iter));
+      }
+    }
+    return out;
+  }
+  /**
    * Returns the current board state as a json-formatted string
    * @return The current board state
    */
