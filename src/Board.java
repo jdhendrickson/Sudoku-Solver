@@ -262,19 +262,7 @@ class Board {
             currentNotes = getCell((x1 * getBoxSize()) + x2, y).getNotes();
             //Check all the numbers that will be on the current row
             for (char j = 1; j <= getBoxSize(); j++) {
-              //Check if the cell is solved
-              if (getCell((x1 * getBoxSize()) + x2, y).isSolved()) {
-                out += getCell((x1 * getBoxSize()) + x2, y).getContent();
-              } else {
-                //Check if the iterator is a note
-                if (currentNotes.contains(Helpers.iterToChar((char) ((row * getBoxSize()) + j)))) {
-                  //Add the note to what will be printed
-                  out += Helpers.iterToChar((char) ((row * getBoxSize()) + j));
-                } else {
-                  //Add a spacer if the iterator is not a note
-                  out += " ";
-                }
-              }
+              out += nextNote((x1 * getBoxSize()) + x2,y,(char) ((row * getBoxSize()) + j));
             }
             out += "|";
           }
@@ -332,15 +320,18 @@ class Board {
   private char nextNote(int x, int y, char iter) {
     //Assume the output is a space
     ArrayList<Character> currentNotes = getCell(x, y).getNotes();
-    char out = ' ';
+    char out;
     //Check if the cell is solved
     if (getCell(x, y).isSolved()) {
-      out += getCell(x, y).getContent();
+      out = getCell(x, y).getContent();
     } else {
       //Check if the iterator is a note
-      if (currentNotes.contains(Helpers.iterToChar((char) (x + iter)))) {
+      if (currentNotes.contains(Helpers.iterToChar(iter))) {
         //Add the note to what will be printed
-        out += Helpers.iterToChar((char) (x + iter));
+        out = Helpers.iterToChar(iter);
+      } else {
+        //Add a spacer if the iterator is not a note
+        out = ' ';
       }
     }
     return out;
