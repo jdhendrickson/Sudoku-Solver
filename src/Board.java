@@ -295,18 +295,19 @@ class Board {
     //Create a single row
     //For each y position
     for (int y = 0; y < size; y++) {
-      //For each of the cells in the row
-      for (int x = 0; x < size; x++) {
-        out += '|';
-        //For each of the notes in the cell
-        for (int i = 0; i < size; i++) {
-          //Check all the numbers that will be on the current row
-          for (char j = 1; j <= getSize(); j++) {
-            out += nextNote(x,y,j);
+      //For each of the rows the notes are displayed on
+      for (int row = 0; row < getSize(); row++) {
+          out += "|";
+          //Go through all the cells in each box
+          for (int x2 = 0; x2 < getSize(); x2++) {
+            //Check all the numbers that will be on the current row
+            for (char j = 1; j <= getSize(); j++) {
+              out += nextNote(x2, y, (char) (row + j));
+            }
+            out += "|";
           }
-        }
+        out += "\n";
       }
-      out += "|\n";
       out += printLines;
     }
     System.out.println(out);
