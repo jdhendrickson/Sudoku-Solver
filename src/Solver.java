@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Solver {
     private Board board;
     private boolean solved;
@@ -20,8 +18,8 @@ public class Solver {
      * Warning: Uses a lot of processing power and time
      * @return The solved sudoku board
      */
-    public Board solveBruteForceRecursive() {
-        return solveBruteForceRecursive(0,0);
+    public Board solveBruteForce() {
+        return solveBruteForce(-1,0);
     }
     /**
      * A recursive function to brute force the sudoku puzzle
@@ -29,7 +27,7 @@ public class Solver {
      * @param y Where the function is on the y-axis
      * @return The current board state. Top level will return the completed board.
      */
-    private Board solveBruteForceRecursive(int x, int y) {
+    private Board solveBruteForce(int x, int y) {
         if(x < board.getSize() - 1) {
             x++;
         } else if(y < board.getSize() - 1) {
@@ -43,15 +41,16 @@ public class Solver {
         }
         //Check if it's one of the given locations
         if(board.getCell(x,y).isStarter()) {
+            System.out.println("Starter found");
             //is a starter, don't need to do anything to this cell
-            return solveBruteForceRecursive(x, y);
+            return solveBruteForce(x, y);
         } else {
             char i = 0;
             while (i < board.getSize() && !solved) {
                 i++;
                 if (isValidLocation(Helpers.iterToChar(i), x, y,false)) {
                     board.getCell(x,y).setContent(Helpers.iterToChar(i));
-                    solveBruteForceRecursive(x, y);
+                    solveBruteForce(x, y);
                     if(!solved)
                         board.getCell(x,y).setContent('0');
                 }
@@ -59,7 +58,6 @@ public class Solver {
         }
         return board;
     }
-
     /**
      * Solves a board based off deduction.
      * This populates all the notes, and then finds which cells only have a single note.
