@@ -41,7 +41,6 @@ public class Solver {
         }
         //Check if it's one of the given locations
         if(board.getCell(x,y).isStarter()) {
-            System.out.println("Starter found");
             //is a starter, don't need to do anything to this cell
             return solveBruteForce(x, y);
         } else {
