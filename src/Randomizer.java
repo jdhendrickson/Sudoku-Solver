@@ -22,8 +22,8 @@ public class Randomizer {
         //Create a random solution
         ///Add a random value for each number
         for (int i = 0; i < board.getSize(); i++) {
-            x = r.nextInt(board.getSize() + 1);
-            y = r.nextInt(board.getSize() + 1);
+            x = r.nextInt(board.getSize());
+            y = r.nextInt(board.getSize());
             if (board.getCell(x,y).getContent() == '0') {
                 //Blank cell, can be used
                 board.getCell(x,y).setContent(Helpers.iterToChar((char) i));
