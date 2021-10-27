@@ -15,18 +15,26 @@ public class Randomizer {
      */
     public Board randomize() {
         Random r = new Random();
-        int x, y;
+        int x, y, iterator;
         Cell tempCell;
         //Clear the current board
         board.blankBoard();
         //Create a random solution
-        ///Add a random value for each number
+        //For each number
         for (int i = 0; i < board.getSize(); i++) {
-            x = r.nextInt(board.getSize());
-            y = r.nextInt(board.getSize());
-            if (board.getCell(x,y).getContent() == '0') {
-                //Blank cell, can be used
-                board.getCell(x,y).setContent(Helpers.iterToChar((char) (i + 1)));
+            //Add all of this number that can exist
+            iterator = 0;
+            while (iterator < board.getSize()) {
+                //Pick a random location
+                x = r.nextInt(board.getSize());
+                y = r.nextInt(board.getSize());
+                //Check the location is good
+                if (Helpers.isValidLocation((char) i, x, y, board, false)) {
+                    //valid location, can be used
+                    board.getCell(x, y).setContent(Helpers.iterToChar((char) (i + 1)));
+                    //Number was placed, increase iterator
+                    iterator++;
+                }
             }
         }
 
