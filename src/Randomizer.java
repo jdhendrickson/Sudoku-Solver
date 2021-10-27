@@ -15,12 +15,12 @@ public class Randomizer {
      */
     public Board randomize() {
         Random r = new Random();
+        int x, y;
+        Cell tempCell;
         //Clear the current board
         board.blankBoard();
         //Create a random solution
         ///Add a random value for each number
-        int x, y;
-        Cell tempCell;
         for (int i = 0; i < board.getSize(); i++) {
             x = r.nextInt(board.getSize() + 1);
             y = r.nextInt(board.getSize() + 1);
