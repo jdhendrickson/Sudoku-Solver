@@ -173,11 +173,25 @@ class Board {
   /**
    * Clears all values on the board, resetting it to be entirely 0s
    */
-  public void resetBoard() {
-    cellArray = new Cell[size][size];
+  public void blankBoard() {
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
         cellArray[i][j].setContent('0');
+      }
+    }
+  }
+
+  /**
+   * Clears all values on the board, resetting it to only the starting values
+   */
+  public void resetBoard() {
+    for(int i = 0; i < size; i++) {
+      for(int j = 0; j < size; j++) {
+        //Check if this is a starter cell
+        if (!getCell(i,j).isStarter()) {
+          //Reset if it is not
+          getCell(i, j).setContent('0');
+        }
       }
     }
   }
