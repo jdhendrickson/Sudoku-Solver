@@ -164,6 +164,15 @@ class Board {
     }
   }
   /**
+   * Sets the specified cell to be a different cell
+   * @param x The x-coordinate
+   * @param y The y-coordinate
+   * @param in The cell to replace the specified cell with
+   */
+  public void setCell(int x, int y, Cell in) {
+    cellArray[y][x] = in;
+  }
+  /**
    * Gets the start location of the box
    * @param x Any location in a line
    * @return The location where the box starts on that line
