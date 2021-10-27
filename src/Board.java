@@ -185,7 +185,7 @@ class Board {
   public void blankBoard() {
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-        cellArray[i][j].setContent('0');
+        setCell(i,j, new Cell(false));
       }
     }
   }
