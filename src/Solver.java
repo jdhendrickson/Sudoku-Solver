@@ -20,8 +20,8 @@ public class Solver {
      * Warning: Uses a lot of processing power and time
      * @return The solved sudoku board
      */
-    public Board solveBruteForce() {
-        return solveByBruteForce(0,0);
+    public Board solveBruteForceRecursive() {
+        return solveBruteForceRecursive(0,0);
     }
     /**
      * A recursive function to brute force the sudoku puzzle
@@ -29,7 +29,7 @@ public class Solver {
      * @param y Where the function is on the y-axis
      * @return The current board state. Top level will return the completed board.
      */
-    private Board solveByBruteForce(int x, int y) {
+    private Board solveBruteForceRecursive(int x, int y) {
         if(x < board.getSize() - 1) {
             x++;
         } else if(y < board.getSize() - 1) {
@@ -44,14 +44,14 @@ public class Solver {
         //Check if it's one of the given locations
         if(board.getCell(x,y).isStarter()) {
             //is a starter, don't need to do anything to this cell
-            return solveByBruteForce(x, y);
+            return solveBruteForceRecursive(x, y);
         } else {
             char i = 0;
             while (i < board.getSize() && !solved) {
                 i++;
                 if (isValidLocation(Helpers.iterToChar(i), x, y,false)) {
                     board.getCell(x,y).setContent(Helpers.iterToChar(i));
-                    solveByBruteForce(x, y);
+                    solveBruteForceRecursive(x, y);
                     if(!solved)
                         board.getCell(x,y).setContent('0');
                 }
