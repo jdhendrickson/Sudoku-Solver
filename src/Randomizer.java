@@ -21,12 +21,12 @@ public class Randomizer {
         board.blankBoard();
         //Create a random solution
         ///Add a random value for each number
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < board.getSize(); i++) {
             x = r.nextInt(board.getSize());
             y = r.nextInt(board.getSize());
             if (board.getCell(x,y).getContent() == '0') {
                 //Blank cell, can be used
-                board.getCell(x,y).setContent(Helpers.iterToChar((char) i));
+                board.getCell(x,y).setContent(Helpers.iterToChar((char) (i + 1)));
             }
         }
 
