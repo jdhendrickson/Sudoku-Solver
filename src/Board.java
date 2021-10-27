@@ -15,11 +15,7 @@ class Board {
   public Board() {
     this.size = 3;
     cellArray = new Cell[size][size];
-    for(int i = 0; i < size; i++) {
-      for(int j = 0; j < size; j++) {
-        cellArray[i][j] = new Cell(false);
-      }
-    }
+    resetBoard();
   }
   /**
    * Creates a blank board of the specified size
@@ -27,11 +23,7 @@ class Board {
   public Board(int in) {
     this.size = in;
     cellArray = new Cell[size][size];
-    for(int i = 0; i < size; i++) {
-      for(int j = 0; j < size; j++) {
-        cellArray[i][j] = new Cell(false);
-      }
-    }
+    resetBoard();
   }
   /**
    * Create a new game board from a specified json file
@@ -42,7 +34,6 @@ class Board {
   }
   public int getSize() { return size; }
   public Cell[][] getCellArray() { return cellArray; }
-
   /**
    * Gets the size of the smaller box of the board.
    * This would be a box of size 3 on a 9x9 board, or 4 on a 16x16 board.
@@ -178,6 +169,19 @@ class Board {
    * @return The location where the box starts on that line
    */
   public int getBoxStart(int x) { return (x / getBoxSize()) * getBoxSize(); }
+
+  /**
+   * Clears all values on the board, resetting it to be entirely 0s
+   */
+  public void resetBoard() {
+    cellArray = new Cell[size][size];
+    for(int i = 0; i < size; i++) {
+      for(int j = 0; j < size; j++) {
+        cellArray[i][j].setContent('0');
+      }
+    }
+  }
+
   /**
    * Prints the current board formatted to look nice and readable.
    * Will state current filled cells on the board.
