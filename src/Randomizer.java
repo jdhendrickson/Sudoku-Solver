@@ -14,24 +14,26 @@ public class Randomizer {
      * @return a randomized board
      */
     public Board randomize() {
+        Solver solver;
         Random r = new Random();
         int x, y, iterator;
         Cell tempCell;
         //Clear the current board
         board.blankBoard();
         //Create a random solution
+        ///Create the randomnesss
         //For each number
-        for (int i = 0; i < board.getSize(); i++) {
+        for (int i = 1; i < board.getSize() + 1; i++) {
             //Add all of this number that can exist
             iterator = 0;
-            while (iterator < board.getSize()) {
+            while (iterator < board.getBoxSize() * 2) {
                 //Pick a random location
                 x = r.nextInt(board.getSize());
                 y = r.nextInt(board.getSize());
                 //Check the location is good
-                if (Helpers.isValidLocation((char) i, x, y, board, false)) {
+                if (Helpers.isValidLocation(Helpers.iterToChar((char) i), x, y, board, false)) {
                     //valid location, can be used
-                    board.getCell(x, y).setContent(Helpers.iterToChar((char) (i + 1)));
+                    board.getCell(x, y).setContent(Helpers.iterToChar((char) i));
                     //Number was placed, increase iterator
                     iterator++;
                 }

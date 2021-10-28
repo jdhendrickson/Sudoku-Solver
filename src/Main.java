@@ -5,9 +5,8 @@ class Main {
        Randomizer randomizer = new Randomizer(board);
 
        Solver solver;
-       for (int i = 0; i < 5; i++) {
-           solver = new Solver(randomizer.randomize());
-           solver.solveBruteForce().printBoard();
+       for (int i = 0; i < 1; i++) {
+           randomizer.randomize().printBoard();
        }
    }
 }
