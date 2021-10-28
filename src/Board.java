@@ -15,7 +15,7 @@ class Board {
   public Board() {
     this.size = 3;
     cellArray = new Cell[size][size];
-    resetBoard();
+    blankBoard();
   }
   /**
    * Creates a blank board of the specified size
@@ -23,7 +23,7 @@ class Board {
   public Board(int in) {
     this.size = in;
     cellArray = new Cell[size][size];
-    resetBoard();
+    blankBoard();
   }
   /**
    * Create a new game board from a specified json file
