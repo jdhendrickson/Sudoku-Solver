@@ -16,32 +16,34 @@ public class Randomizer {
     public Board randomize() {
         Solver solver;
         Random r = new Random();
-        int x, y, iterator;
+        int xLoc, yLoc, iterator;
         Cell tempCell;
         //Clear the current board
         board.blankBoard();
         //Create a random solution
-        ///Create the randomnesss
+        ///Create the randomness
         //For each number
         for (int i = 1; i < board.getSize() + 1; i++) {
             //Add all of this number that can exist
             iterator = 0;
             while (iterator < 1) {
                 //Pick a random location
-                x = r.nextInt(board.getSize());
-                y = r.nextInt(board.getSize());
+                xLoc = r.nextInt(board.getSize());
+                yLoc = r.nextInt(board.getSize());
                 //Check the location is good
-                if (Helpers.isValidLocation(Helpers.iterToChar((char) i), x, y, board, false)) {
+                if (Helpers.isValidLocation(Helpers.iterToChar((char) i), xLoc, yLoc, board, false)) {
                     //valid location, can be used
-                    board.getCell(x, y).setContent(Helpers.iterToChar((char) i));
+                    board.getCell(xLoc, yLoc).setContent(Helpers.iterToChar((char) i));
                     //Number was placed, increase iterator
                     iterator++;
                 }
             }
         }
         //Finish solving the puzzle to prove it's a valid sudoku
+        solver = new Solver(board);
+        solver.printBoard();
+        board = solver.solveBruteForce();
 
-        
         //Remove extra values to make a sudoku puzzle
         //Check after removing each value there is still only 1 solution
 
