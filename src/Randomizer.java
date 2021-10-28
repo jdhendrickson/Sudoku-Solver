@@ -39,6 +39,11 @@ public class Randomizer {
                 }
             }
         }
+        //Finish solving the puzzle to prove it's a valid sudoku
+
+        
+        //Remove extra values to make a sudoku puzzle
+        //Check after removing each value there is still only 1 solution
 
 
         //Set cells to be starters
