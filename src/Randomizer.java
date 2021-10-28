@@ -26,7 +26,7 @@ public class Randomizer {
         for (int i = 1; i < board.getSize() + 1; i++) {
             //Add all of this number that can exist
             iterator = 0;
-            while (iterator < board.getBoxSize() * 2) {
+            while (iterator < 1) {
                 //Pick a random location
                 x = r.nextInt(board.getSize());
                 y = r.nextInt(board.getSize());
