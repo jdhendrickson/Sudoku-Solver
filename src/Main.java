@@ -6,7 +6,10 @@ class Main {
 
        Solver solver;
        for (int i = 0; i < 1; i++) {
-           randomizer.randomize().printBoard();
+           board = randomizer.randomize();
+           solver = new Solver(board);
+           solver.solveBruteForce();
+           solver.printBoard();
        }
    }
 }
